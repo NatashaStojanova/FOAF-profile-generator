@@ -1,113 +1,96 @@
-import React from 'react'
-import {withRouter} from 'react-router-dom';
+import React, {Component} from 'react';
+import PersonService from "../../service/personService";
 
-const CreateProfile = (props) => {
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-        props.history.push('/persons');
-        props.onSubmit(
+
+class CreateProfile extends Component {
+    constructor(props) {
+        super(props);
+        let newPerson = {
+            firstName: "Esmeralda",
+            lastName: null,
+            nickname: null,
+            homepage: null,
+            email: null,
+            baseURI: null,
+            title: "juancho",
+        };
+
+        let newFriends = [
+            {//First friend is always the input person
+                firstName: "friend1",
+                lastName: null,
+                nickname: null,
+                homepage: null,
+                email: null,
+                baseURI: null,
+                title: null,
+            },
             {
-                "baseURI": e.target.baseURI.value,
-                "email": e.target.email.value,
-                "firstName": e.target.firstName.value,
-                "lastName": e.target.lastName.value,
-                "nickname": e.target.nickname.value,
-                "homepage": e.target.homepage.value,
-                "title": e.target.title.value,
-
+                firstName: "friend2",
+                lastName: null,
+                nickname: null,
+                homepage: null,
+                email: null,
+                baseURI: null,
+                title: null,
+            },
+            {
+                firstName: "friend3",
+                lastName: null,
+                nickname: null,
+                homepage: null,
+                email: null,
+                baseURI: null,
+                title: null,
             }
-        );
-    };
+        ];
 
-    return (
-        <div className="row">
-            <form className="card" onSubmit={onFormSubmit}>
-                <h4 className="text-upper text-left">Basic FOAF profile</h4>
-                <div className="form-group row">
-                    <label htmlFor="baseURI" className="col-sm-4 offset-sm-1 text-left">Base URI</label>
-                    <div className="col-md-6">
-                        <input type="text"
-                               className="form-control" id="baseURI" name={"baseURI"}
-                               placeholder="baseURI" required maxLength="50"/>
-                    </div>
-                </div>
+        let socialNetworking = {
+                personID: 0,
+                blog: "boom",
+                skypeID: null,
+                linkedIn: null,
+                facebookLink: null,
+                twitterLink: null,
+            };
 
-                <div className="form-group row">
-                    <label htmlFor="email" className="col-sm-4 offset-sm-1 text-left">E-mail</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="email"
-                               className="form-control" id="email" name={"email"}/>
-                    </div>
-                </div>
+        let workProfile = {
+            personID: 0,
+            workHomepage: "yo",
+            schoolHomepage: null,
+            currentProject: null,
+            recentPublication: null
+        };
 
-                <div className="form-group row">
-                    <label htmlFor="firstName" className="col-sm-4 offset-sm-1 text-left">First Name</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="firstName"
-                               className="form-control" id="firstName" name={"firstName"}/>
-                    </div>
-                </div>
+        PersonService.addPerson(newPerson).then(resp => {
+            //resp.data.data.id -> socialNetworking['personID']
+            PersonService.addSocNet(socialNetworking).then(resp3 => {
+                PersonService.addWorkProf(workProfile).then(resp4 => {
+                    PersonService.addFriends(newFriends).then(resp2 => {
+                        console.table(resp4);
+                    })
+                })
+            })
+        });
 
-                <div className="form-group row">
-                    <label htmlFor="lastName" className="col-sm-4 offset-sm-1 text-left">Last Name</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="lastName"
-                               className="form-control" id="lastName" name={"lastName"}/>
-                    </div>
-                </div>
+        this.setState({})
+    }
 
-                <div className="form-group row">
-                    <label htmlFor="nickname" className="col-sm-4 offset-sm-1 text-left">Nickname</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="nickname"
-                               className="form-control" id="nickname" name={"nickname"}/>
-                    </div>
-                </div>
+    savePerson() {
+        //1. Save newPerson -> response returns same person with ID
+        //2. Save newFriends -> append the received ID
+        //3. Save socialNetworking -> append the received ID
+        //4. Save workProfile -> append the received ID
 
-                <div className="form-group row">
-                    <label htmlFor="homepage" className="col-sm-4 offset-sm-1 text-left">Homepage</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="homepage"
-                               className="form-control" id="homepage" name={"homepage"}/>
-                    </div>
-                </div>
+    }
 
-                <div className="form-group row">
-                    <label htmlFor="title" className="col-sm-4 offset-sm-1 text-left">Title</label>
-                    <div className="col-sm-6">
-                        <input type="text" placeholder="Mr,Mrs..."
-                               className="form-control" id="title" name={"title"}/>
-                    </div>
-                </div>
+    render() {
+        return (
+            <div className="container">
 
+            </div>
+        )
+    }
+}
 
-                <div className="form-group row">
-                    <div
-                        className="offset-sm-1 col-sm-6  text-center">
-                        <button
-                            type="submit"
-                            className="btn btn-success text-upper">
-                            Create
-                        </button>
-                    </div>
-                    <div
-                        className="offset-sm-1 col-sm-3  text-center">
-                        <button
-                            className="btn btn-warning text-upper">
-                            Reset
-                        </button>
-                    </div>
-                    <div
-                        className="offset-sm-1 col-sm-3  text-center">
-                        <button
-                            className="btn btn-danger text-upper">
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    )
-};
-
-export default withRouter(CreateProfile);
+export default CreateProfile;

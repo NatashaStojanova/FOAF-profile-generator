@@ -30,12 +30,10 @@ public class Person {
     private String baseURI;
     private String title;
 
-    /*@ManyToMany
-    private List<Friend> friends;*/
-
     @JsonIgnore
-    @OneToMany(mappedBy = "person")
-    private List<PersonFriend> friends;
+    @OneToMany
+    @Column(name = "friend_id")
+    private List<Person> friends;
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,

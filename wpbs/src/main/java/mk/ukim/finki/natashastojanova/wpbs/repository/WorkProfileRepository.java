@@ -1,10 +1,11 @@
 package mk.ukim.finki.natashastojanova.wpbs.repository;
 
 import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Natasha Stojanova
  */
-public interface WorkProfileRepository extends JpaRepository<WorkProfile, Long> {
+@Repository
+public interface WorkProfileRepository extends JpaSpecificationRepository<WorkProfile> {
 }

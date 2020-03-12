@@ -10,9 +10,8 @@ import java.util.List;
 /**
  * @author Natasha Stojanova
  */
-
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl extends BaseEntityCrudServiceImpl<Person, PersonRepository> implements PersonService {
     private PersonRepository personRepository;
 
     public PersonServiceImpl(PersonRepository personRepository) {
@@ -20,12 +19,17 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void save(Person person) {
-        personRepository.save(person);
+    protected PersonRepository getRepository() {
+        return personRepository;
+    }
+
+    @Override
+    public Person save(Person person) {
+        return getRepository().save(person);
     }
 
     @Override
     public List<Person> findAll() {
-        return personRepository.findAll();
+        return getRepository().findAll();
     }
 }

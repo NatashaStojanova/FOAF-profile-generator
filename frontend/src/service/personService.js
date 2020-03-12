@@ -8,21 +8,20 @@ const PersonService = {
 
 
     addPerson: (person) => {
-        const data = {
-            ...person,
-            firstName: person.firstName
-
-        };
-        //let form = new FormData();
-        const formParams = qs.stringify(data);
-        return axios.post("/persons", formParams, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
+        return axios.post("/persons/new_person", person);
     },
 
+    addFriends: (friends) => {
+        return axios.post("/persons/new_friends", friends)
+    },
 
-}
+    addSocNet: (socNet) => {
+        return axios.post("/persons/new_soc_net", socNet)
+    },
+
+    addWorkProf: (workProf) => {
+        return axios.post("/persons/new_work_profile", workProf)
+    }
+};
 
 export default PersonService;

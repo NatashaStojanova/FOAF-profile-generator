@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import CreateProfile from "../CreateProfile/createProfile"
 import './App.css';
 import PersonService from "../../service/personService";
+import Header from "../Header/header";
 
 class App extends Component {
 
@@ -32,7 +33,8 @@ class App extends Component {
         return (
             <div className="App">
                 <Router>
-                    <Route path="/pizzas" exact
+                    <Header/>
+                    <Route path="/create" exact
                            render={() => <CreateProfile onSubmit={this.addNewPerson}/>}>
                     </Route>
                 </Router>

@@ -1,10 +1,18 @@
 package mk.ukim.finki.natashastojanova.wpbs.web.controllers;
 
+import mk.ukim.finki.natashastojanova.wpbs.dto.SocialNetworkDTO;
+import mk.ukim.finki.natashastojanova.wpbs.dto.WorkProfileDTO;
 import mk.ukim.finki.natashastojanova.wpbs.model.Person;
+import mk.ukim.finki.natashastojanova.wpbs.model.SocialNetwork;
+import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
 import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
+import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
+import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -16,45 +24,51 @@ import java.util.List;
 @CrossOrigin("*")
 public class PersonController {
 
-    private PersonService personService;
+    private final PersonService personService;
+    private final SocialNetworkService socialNetworkService;
+    private final WorkProfileService workProfileService;
 
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, SocialNetworkService socialNetworkService, WorkProfileService workProfileService) {
         this.personService = personService;
+        this.socialNetworkService = socialNetworkService;
+        this.workProfileService = workProfileService;
     }
 
     //add new person
-    @PostMapping
-    public Person addPerson(@RequestParam(value = "baseURI") String baseURI,
-                            @RequestParam(value = "email") String email,
-                            @RequestParam(value = "firstName") String firstName,
-                            @RequestParam(value = "lastName") String lastName,
-                            @RequestParam(value = "nickname") String nickname,
-                            @RequestParam(value = "homepage") String homepage,
-                            @RequestParam(value = "title") String title) {
+    @RequestMapping(value = "/new_person", method = RequestMethod.POST, produces = "application/json")
+    public Person addPerson(@Valid @RequestBody Person person, HttpServletRequest request, HttpServletResponse response) {
+        return personService.save(person);
+    }
 
-        Person newPerson = new Person();
-        newPerson.setBaseURI(baseURI);
-        newPerson.setEmail(email);
-        newPerson.setFirstName(firstName);
-        newPerson.setLastName(lastName);
-        newPerson.setNickname(nickname);
-        newPerson.setHomepage(homepage);
-        newPerson.setTitle(title);
+    @PostMapping("/new_friends")
+    public List<Person> addFriends(@Valid @RequestBody List<Person> friends, HttpServletRequest request, HttpServletResponse response) {
+        // Person person = personService.findByEmail(friends.get(0).getEmail());
+        //
+        // friends.remove(0);
+        // personService.save(friends);
+        return friends;
+    }
 
-        personService.save(newPerson);
-        return newPerson;
+    @PostMapping("/new_soc_net")
+    public SocialNetworkDTO addSocNet(@Valid @RequestBody SocialNetworkDTO network, HttpServletRequest request, HttpServletResponse response) {
+        // network.getPersonID();
+        // SocialNetwork socNet = new SocialNetwork();
+        // socNet.set...
+        // socNet = socialNetworkService.save(socNet);
+        // Person person = new Person();
+        // person.setSocialNetwork(socNet);
+        // personService.save(person);
+        return network;
+    }
 
+    @PostMapping("/new_work_profile")
+    public WorkProfileDTO addWorkProf(@Valid @RequestBody WorkProfileDTO profile, HttpServletRequest request, HttpServletResponse response) {
+        return profile;
     }
 
     //show all persons
     @GetMapping
     public List<Person> getAllPersons() {
-        List<Person> pList = new ArrayList<>();
-        personService.findAll().forEach(p -> {
-            pList.add(p);
-        });
-        return pList;
+        return personService.findAll();
     }
-
-
 }

@@ -4,6 +4,7 @@ import CreateProfile from "../CreateProfile/createProfile"
 import './App.css';
 import PersonService from "../../service/personService";
 import Header from "../Header/header";
+import Parent from "../Parent/parent";
 
 class App extends Component {
 
@@ -14,20 +15,20 @@ class App extends Component {
         }
     }
 
-    addNewPerson = ((newPerson) => {
-        PersonService.addPerson(newPerson).then(resp => {
-            const person = resp.data;
-            this.setState((prevState) => {
-                const newPersons = prevState.persons.map((item) => {
-                    return item;
-                });
-                newPersons.push(person);
-                return {
-                    "persons": newPersons
-                }
-            });
-        });
-    });
+    /* addNewPerson = ((newPerson) => {
+         PersonService.addPerson(newPerson).then(resp => {
+             const person = resp.data;
+             this.setState((prevState) => {
+                 const newPersons = prevState.persons.map((item) => {
+                     return item;
+                 });
+                 newPersons.push(person);
+                 return {
+                     "persons": newPersons
+                 }
+             });
+         });
+     });*/
 
     render() {
         return (
@@ -35,7 +36,10 @@ class App extends Component {
                 <Router>
                     <Header/>
                     <Route path="/create" exact
-                           render={() => <CreateProfile onSubmit={this.addNewPerson}/>}>
+                           render={() => <CreateProfile/>}>
+                    </Route>
+                    <Route path="/proba" exact
+                           render={() => <Parent/>}>
                     </Route>
                 </Router>
             </div>

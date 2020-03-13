@@ -32,4 +32,25 @@ public class PersonServiceImpl extends BaseEntityCrudServiceImpl<Person, PersonR
     public List<Person> findAll() {
         return getRepository().findAll();
     }
+
+
+    @Override
+    public Person findByEmail(String email) {
+        return personRepository.findByEmail(email).get();
+    }
+
+    @Override
+    public Person findByBaseURI(String baseURI) {
+        return personRepository.findByBaseURI(baseURI).get();
+    }
+
+    @Override
+    public Person findByNickname(String nickname) {
+        return personRepository.findByNickname(nickname).get();
+    }
+
+    @Override
+    public Person findById(Long id){
+        return personRepository.findById(id).get();
+    }
 }

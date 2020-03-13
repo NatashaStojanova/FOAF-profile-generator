@@ -74,30 +74,31 @@ class CreateProfile extends Component {
         //2. Save newFriends -> append the received ID
         //3. Save socialNetworking -> append the received ID
         //4. Save workProfile -> append the received ID
-        e.preventDefault();
+        /*e.preventDefault();
 
         console.table(this.state.socNet);
         // console.table(this.state.workProf);
 
-        return;
+        return;*/
 
         PersonService.addPerson(this.state.person).then(personResp => {
             let newPerson = personResp.data;
-            this.setState(state => {
-                // add 0 to be Person
-            });
-
+            /* this.setState(state => {
+                 // add 0 to be Person
+             });
+ */
             this.setState(prevState => {
                 let newSocNet = this.state.socNet;
                 let newWorkProf = this.state.workProf;
                 newSocNet.personID = newPerson.id;
-                newWorkProf.personID = newWorkProf.id;
+                newWorkProf.personID = newPerson.id;
                 return {
                     socNet: newSocNet,
                     workProf: newWorkProf,
                 }
             });
             PersonService.addSocNet(this.state.socNet).then(socNetResp => {
+
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
                     PersonService.addFriends(this.state.friends).then(
                         alert("Successfully added person")
@@ -126,9 +127,13 @@ class CreateProfile extends Component {
         })
     });
 
-    socNetChange = ((socNet) => {
-        this.setState({
-            socNet: socNet
+    socNetChange = ((target, value) => {
+        this.setState(prevState => {
+            let socNet = this.state.socNet;
+            socNet[target] = value;
+            return {
+                socNet: socNet
+            }
         })
     });
 

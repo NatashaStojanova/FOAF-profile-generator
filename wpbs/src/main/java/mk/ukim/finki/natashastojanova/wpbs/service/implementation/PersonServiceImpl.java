@@ -6,6 +6,7 @@ import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Natasha Stojanova
@@ -35,13 +36,13 @@ public class PersonServiceImpl extends BaseEntityCrudServiceImpl<Person, PersonR
 
 
     @Override
-    public Person findByEmail(String email) {
-        return personRepository.findByEmail(email).get();
+    public Optional<Person> findByEmail(String email) {
+        return personRepository.findByEmail(email);
     }
 
     @Override
-    public Person findByBaseURI(String baseURI) {
-        return personRepository.findByBaseURI(baseURI).get();
+    public Optional<Person> findByBaseURI(String baseURI) {
+        return personRepository.findByBaseURI(baseURI);
     }
 
     @Override

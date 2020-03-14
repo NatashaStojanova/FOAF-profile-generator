@@ -31,7 +31,7 @@ public class Person {
     private String title;
 
     @JsonIgnore
-    @OneToMany
+    @ManyToMany
     @Column(name = "friend_id")
     private List<Person> friends;
 
@@ -44,4 +44,6 @@ public class Person {
             cascade = CascadeType.ALL,
             mappedBy = "person")
     private WorkProfile workProfile;
+
+
 }

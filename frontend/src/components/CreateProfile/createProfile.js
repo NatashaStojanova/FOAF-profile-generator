@@ -91,7 +91,7 @@ class CreateProfile extends Component {
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
                     debugger;
                     PersonService.addFriends(this.state.friends).then(resp => {
-                        alert("Successfully added person")
+                        alert("Successfully added person")  
                     }).catch(err => {
                         alert(err)
                     })

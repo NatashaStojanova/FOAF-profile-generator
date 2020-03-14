@@ -2,14 +2,16 @@ package mk.ukim.finki.natashastojanova.wpbs.service;
 
 import mk.ukim.finki.natashastojanova.wpbs.model.Person;
 
+import java.util.Optional;
+
 /**
  * @author Natasha Stojanova
  */
 public interface PersonService extends BaseEntityCrudService<Person> {
 
-    public Person findByEmail(String email);
+    public Optional<Person> findByEmail(String email);
 
-    public Person findByBaseURI(String baseURI);
+    public Optional<Person> findByBaseURI(String baseURI);
 
     public Person findByNickname(String nickname);
 

@@ -11,6 +11,10 @@ const PersonService = {
         return axios.post("/persons/new_person", person);
     },
 
+    generateProfile: (person) => {
+        return axios.post("/persons/generate", person);
+    },
+
     addFriends: (friends) => {
         return axios.post("/persons/new_friends", friends)
     },

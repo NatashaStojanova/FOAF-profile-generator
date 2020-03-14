@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import PersonService from "../../service/personService";
 import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
-import WorkProfile from "./WorkProfile/workProfile";
-import {Button, Form} from "reactstrap";
-
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -20,17 +17,7 @@ class CreateProfile extends Component {
             title: null,
         };
 
-        let newFriends = [
-            {//First friend is always the input person
-                firstName: null,
-                lastName: null,
-                nickname: null,
-                homepage: null,
-                email: null,
-                baseURI: null,
-                title: null,
-            }
-        ];
+        let newFriends = [];
 
         let newSocNet = {
             personID: null,
@@ -70,39 +57,42 @@ class CreateProfile extends Component {
 
 
     savePerson = (e) => {
+
         //1. Save newPerson -> response returns same person with ID
         //2. Save newFriends -> append the received ID
         //3. Save socialNetworking -> append the received ID
         //4. Save workProfile -> append the received ID
         /*e.preventDefault();
 
-        console.table(this.state.socNet);
-        // console.table(this.state.workProf);
+        //console.table(this.state.socNet);
+        //console.table(this.state.workProf);
+        console.table(this.state.friends);
 
         return;*/
 
         PersonService.addPerson(this.state.person).then(personResp => {
             let newPerson = personResp.data;
-            /* this.setState(state => {
-                 // add 0 to be Person
-             });
- */
+
             this.setState(prevState => {
                 let newSocNet = this.state.socNet;
                 let newWorkProf = this.state.workProf;
+                let newFriends = this.state.friends;
                 newSocNet.personID = newPerson.id;
                 newWorkProf.personID = newPerson.id;
+
+                newFriends[0] = newPerson;
                 return {
                     socNet: newSocNet,
                     workProf: newWorkProf,
+                    friends: newFriends,
                 }
             });
             PersonService.addSocNet(this.state.socNet).then(socNetResp => {
-
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
-                    PersonService.addFriends(this.state.friends).then(
+                    debugger;
+                    PersonService.addFriends(this.state.friends).then(resp => {
                         alert("Successfully added person")
-                    ).catch(err => {
+                    }).catch(err => {
                         alert(err)
                     })
                 }).catch(err => {
@@ -137,15 +127,26 @@ class CreateProfile extends Component {
         })
     });
 
-    workProfChange = ((workProf) => {
-        this.setState({
-            workProf: workProf
+    workProfChange = ((target, value) => {
+        this.setState(prevState => {
+            let workProf = this.state.workProf;
+            workProf[target] = value;
+            return {
+                workProf: workProf
+            }
         })
     });
 
-    friendsChange = ((friends) => {
-        this.setState({
-            friends: friends,
+    friendsChange = ((friendID, target, value) => {
+        let id = friendID;
+        this.setState(prevState => {
+            let friends = this.state.friends;
+            if (friends[id] === undefined || friends[id] === null)
+                friends[id] = {};
+            friends[id][target] = value;
+            return {
+                friends: friends
+            }
         })
     });
 

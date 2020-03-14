@@ -25,7 +25,7 @@ const Person = (props) => {
 
             <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
                 <Label for="lastName" className="mr-sm-2">Last Name</Label>
-                <Input type="email" name="lastName" id="lastName" onChange={onPersonChange} placeholder="@idk.cool"/>
+                <Input type="text" name="lastName" id="lastName" onChange={onPersonChange} placeholder="Family Name"/>
             </FormGroup>
 
             <FormGroup className="mb-2 mr-sm-2 mb-sm-2">

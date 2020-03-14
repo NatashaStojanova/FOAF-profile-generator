@@ -12,9 +12,9 @@ class CreateProfile extends Component {
             lastName: null,
             nickname: null,
             homepage: null,
-            email: null,
-            baseURI: null,
-            title: null,
+            email:    null,
+            baseURI:  null,
+            title:    null,
         };
 
         let newFriends = [];
@@ -89,9 +89,14 @@ class CreateProfile extends Component {
             });
             PersonService.addSocNet(this.state.socNet).then(socNetResp => {
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
-                    debugger;
+
                     PersonService.addFriends(this.state.friends).then(resp => {
-                        alert("Successfully added person")  
+                        alert("Successfully added person");
+                        PersonService.generateProfile(this.state.person).then(personResp => {
+                            debugger;
+                            console.table(personResp.data);
+                            alert("Successfully created Profile")
+                        })
                     }).catch(err => {
                         alert(err)
                     })

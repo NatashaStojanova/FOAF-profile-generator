@@ -1,22 +1,25 @@
 package mk.ukim.finki.natashastojanova.wpbs.web.controllers;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import mk.ukim.finki.natashastojanova.wpbs.dto.SocialNetworkDTO;
 import mk.ukim.finki.natashastojanova.wpbs.dto.WorkProfileDTO;
-import mk.ukim.finki.natashastojanova.wpbs.exceptions.PersonNotFoundException;
 import mk.ukim.finki.natashastojanova.wpbs.model.Person;
 import mk.ukim.finki.natashastojanova.wpbs.model.SocialNetwork;
 import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
 import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.VCARD;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +59,12 @@ public class PersonController {
                 optPerson.get().setNickname(person.getNickname());
                 optPerson.get().setHomepage(person.getHomepage());
                 optPerson.get().setTitle(person.getTitle());
+
+
                 return personService.save(optPerson.get());
             }
+
+
         }
         return personService.save(person);
     }
@@ -129,4 +136,48 @@ public class PersonController {
     public List<Person> getAllPersons() {
         return personService.findAll();
     }
+
+    //TURTLE FORMAT
+    @RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
+    public String createFOAFprofile(@Valid @RequestBody Person person) {
+        Model model = ModelFactory.createDefaultModel();
+        Resource personTurtle = model.createResource(person.getBaseURI())
+                .addProperty(VCARD.Given, person.getFirstName())
+                .addProperty(VCARD.Family, person.getLastName())
+                .addProperty(VCARD.NICKNAME, person.getNickname())
+                .addProperty(VCARD.EMAIL, person.getEmail())
+                .addProperty(VCARD.TITLE, person.getTitle())
+                .addProperty(VCARD.Other, person.getHomepage());
+        model.write(System.out, "TURTLE");
+        return personTurtle.toString();
+    }
+
+    //JSON FORMAT
+    /*@RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
+    public List<JSONObject> createFOAFprofile(@Valid @RequestBody Person person) throws JSONException {
+        Model model = ModelFactory.createDefaultModel();
+        List<JSONObject> list=new ArrayList();
+        *//*Resource personTurtle = model.createResource(person.getBaseURI())
+                .addProperty(VCARD.Given, person.getFirstName())
+                .addProperty(VCARD.Family , person.getLastName())
+                .addProperty(VCARD.NICKNAME , person.getNickname())
+                .addProperty(VCARD.EMAIL , person.getEmail())
+                .addProperty(VCARD.TITLE , person.getTitle())
+                .addProperty(VCARD.Other, person.getHomepage());
+        model.write(System.out, "TURTLE");*//*
+        JSONObject obj = new JSONObject();
+        obj.put("firstName",person.getFirstName());
+        obj.put("lastName",person.getLastName());
+        obj.put("nickname",person.getNickname());
+        obj.put("baseURI",person.getBaseURI());
+        obj.put("email",person.getEmail());
+        obj.put("homepage",person.getHomepage());
+        obj.put("title",person.getTitle());
+
+        list.add(obj);
+        System.out.println(list);
+        return list;
+
+    }*/
+
 }

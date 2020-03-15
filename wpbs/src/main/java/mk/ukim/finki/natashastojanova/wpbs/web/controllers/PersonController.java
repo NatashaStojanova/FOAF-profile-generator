@@ -9,24 +9,21 @@ import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
 import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
-import org.apache.commons.io.output.StringBuilderWriter;
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.jena.base.Sys;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.VCARD;
-import org.apache.jena.vocabulary.RDF;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.OutputStream;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +35,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/persons")
 @CrossOrigin("*")
-public class PersonController {
+public class PersonController<RESTResource> {
 
     private final PersonService personService;
     private final SocialNetworkService socialNetworkService;
@@ -67,11 +64,8 @@ public class PersonController {
                 optPerson.get().setHomepage(person.getHomepage());
                 optPerson.get().setTitle(person.getTitle());
 
-
                 return personService.save(optPerson.get());
             }
-
-
         }
         return personService.save(person);
     }
@@ -89,17 +83,14 @@ public class PersonController {
                 personFriends.add(friend1.get());
                 System.out.println(personFriends);
                 person.get().setFriends(personFriends);
-
             } else {
                 //dokolku ne postoi->togash treba da se kreira vo bazata
                 personFriends.add(friend);
                 person.get().setFriends(personFriends);
                 personService.save(personFriends);
             }
-
         });
         return friends;
-
     }
 
     //add social networks
@@ -146,7 +137,8 @@ public class PersonController {
 
     //TURTLE FORMAT
     @RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
-    public String createFOAFprofile(@Valid @RequestBody Person newPerson) {
+    public @ResponseBody
+    FileSystemResource createFOAFprofile(@Valid @RequestBody Person newPerson) throws IOException {
         Optional<Person> check = personService.findOne(newPerson.getId());
         if (!check.isPresent())
             throw new PersonNotFoundException();
@@ -167,9 +159,24 @@ public class PersonController {
                 .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog());
         person.getFriends().forEach(friend -> {
             personTurtle.addProperty(FOAF.knows, friend.getBaseURI());
+            personTurtle.addProperty(FOAF.knows, friend.getEmail());
         });
-        String tmp = model.toString();
-        return tmp;
+
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
+        FileWriter out = new FileWriter(fileName);
+        try {
+            model.write(out, "RDF/XML");
+        } finally {
+            try {
+                out.close();
+            } catch (IOException closeException) {
+            }
+        }
+        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\" + fileName);
+        return new FileSystemResource(sendFile);
     }
 
     //JSON FORMAT
@@ -199,5 +206,4 @@ public class PersonController {
         return list;
 
     }*/
-
 }

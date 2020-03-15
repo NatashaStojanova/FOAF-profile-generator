@@ -3,6 +3,7 @@ import PersonService from "../../service/personService";
 import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Textarea as MdTextarea } from 'reactstrap-md-textarea';
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -163,10 +164,9 @@ class CreateProfile extends Component {
                 <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                      onSocNetChange={this.socNetChange}/>
                 <button type="button" className="btn btn-success" onClick={this.savePerson}>Submit</button>
-                <FormGroup>
-                    <Label for="foafProfile"></Label>
-                    <textarea name="text" id="foafProfile" rows="15" cols="100" />
-                </FormGroup>
+                <div id="foafProfile">
+
+                </div>
             </div>
         )
     }

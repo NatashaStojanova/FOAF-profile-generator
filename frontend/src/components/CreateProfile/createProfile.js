@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PersonService from "../../service/personService";
 import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -92,9 +93,9 @@ class CreateProfile extends Component {
 
                     PersonService.addFriends(this.state.friends).then(resp => {
                         alert("Successfully added person");
-                        PersonService.generateProfile(this.state.person).then(personResp => {
+                        PersonService.generateProfile(newPerson).then(personResp => {
                             debugger;
-                            console.table(personResp.data);
+                            document.getElementById("foafProfile").innerText = personResp.data;
                             alert("Successfully created Profile")
                         })
                     }).catch(err => {
@@ -162,6 +163,10 @@ class CreateProfile extends Component {
                 <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                      onSocNetChange={this.socNetChange}/>
                 <button type="button" className="btn btn-success" onClick={this.savePerson}>Submit</button>
+                <FormGroup>
+                    <Label for="foafProfile"></Label>
+                    <textarea name="text" id="foafProfile" rows="15" cols="100" />
+                </FormGroup>
             </div>
         )
     }

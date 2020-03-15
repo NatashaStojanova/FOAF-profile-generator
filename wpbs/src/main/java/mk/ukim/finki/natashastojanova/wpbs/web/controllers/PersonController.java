@@ -2,16 +2,20 @@ package mk.ukim.finki.natashastojanova.wpbs.web.controllers;
 
 import mk.ukim.finki.natashastojanova.wpbs.dto.SocialNetworkDTO;
 import mk.ukim.finki.natashastojanova.wpbs.dto.WorkProfileDTO;
+import mk.ukim.finki.natashastojanova.wpbs.exceptions.PersonNotFoundException;
 import mk.ukim.finki.natashastojanova.wpbs.model.Person;
 import mk.ukim.finki.natashastojanova.wpbs.model.SocialNetwork;
 import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
 import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
+import org.apache.commons.io.output.StringBuilderWriter;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.VCARD;
+import org.apache.jena.vocabulary.RDF;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +24,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -139,17 +146,30 @@ public class PersonController {
 
     //TURTLE FORMAT
     @RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
-    public String createFOAFprofile(@Valid @RequestBody Person person) {
+    public String createFOAFprofile(@Valid @RequestBody Person newPerson) {
+        Optional<Person> check = personService.findOne(newPerson.getId());
+        if (!check.isPresent())
+            throw new PersonNotFoundException();
+        Person person = check.get();
         Model model = ModelFactory.createDefaultModel();
         Resource personTurtle = model.createResource(person.getBaseURI())
-                .addProperty(VCARD.Given, person.getFirstName())
-                .addProperty(VCARD.Family, person.getLastName())
-                .addProperty(VCARD.NICKNAME, person.getNickname())
-                .addProperty(VCARD.EMAIL, person.getEmail())
-                .addProperty(VCARD.TITLE, person.getTitle())
-                .addProperty(VCARD.Other, person.getHomepage());
-        model.write(System.out, "TURTLE");
-        return personTurtle.toString();
+                .addProperty(FOAF.firstName, person.getFirstName())
+                .addProperty(FOAF.lastName, person.getLastName())
+                .addProperty(FOAF.nick, person.getNickname())
+                .addProperty(FOAF.title, person.getTitle())
+                .addProperty(FOAF.homepage, person.getHomepage())
+                .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog())
+                .addProperty(FOAF.workplaceHomepage, person.getWorkProfile().getWorkHomepage())
+                .addProperty(FOAF.currentProject, person.getWorkProfile().getCurrentProject())
+                .addProperty(FOAF.schoolHomepage, person.getWorkProfile().getSchoolHomepage())
+                .addProperty(FOAF.publications, person.getWorkProfile().getRecentPublication())
+                .addProperty(FOAF.skypeID, person.getSocialNetwork().getSkypeID())
+                .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog());
+        person.getFriends().forEach(friend -> {
+            personTurtle.addProperty(FOAF.knows, friend.getBaseURI());
+        });
+        String tmp = model.toString();
+        return tmp;
     }
 
     //JSON FORMAT

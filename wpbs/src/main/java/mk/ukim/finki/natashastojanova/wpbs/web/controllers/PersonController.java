@@ -171,16 +171,16 @@ public class PersonController<RESTResource> {
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter out = new FileWriter(fileName);
+        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName);
         try {
-            model.write(out, "RDF/XML");
+            model.write(out, "RDF/XML-ABBREV");
         } finally {
             try {
                 out.close();
             } catch (IOException closeException) {
             }
         }
-        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\" + fileName);
+        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName);
         return new FileSystemResource(sendFile);
     }
 

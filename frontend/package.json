@@ -17,7 +17,8 @@
     "react-form-control": "^1.0.14",
     "react-jsx": "^1.0.0",
     "react-scripts": "3.4.0",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "reactstrap-md-textarea": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

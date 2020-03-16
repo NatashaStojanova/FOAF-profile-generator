@@ -30,7 +30,7 @@ const Header = (props) => {
                             <NavLink href="/create/">Create profile</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#">People i know</NavLink>
+                            <NavLink href="/visualization/">RDF Visualization</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

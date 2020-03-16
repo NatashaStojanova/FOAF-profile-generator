@@ -17,6 +17,8 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
+import org.apache.jena.sparql.vocabulary.FOAF;
+
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -144,22 +146,25 @@ public class PersonController<RESTResource> {
             throw new PersonNotFoundException();
         Person person = check.get();
         Model model = ModelFactory.createDefaultModel();
-        Resource personTurtle = model.createResource(person.getBaseURI())
+        Resource personTurtle = model.createResource(person.getBaseURI(), FOAF.Person)
                 .addProperty(FOAF.firstName, person.getFirstName())
                 .addProperty(FOAF.lastName, person.getLastName())
                 .addProperty(FOAF.nick, person.getNickname())
                 .addProperty(FOAF.title, person.getTitle())
                 .addProperty(FOAF.homepage, person.getHomepage())
-                .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog())
                 .addProperty(FOAF.workplaceHomepage, person.getWorkProfile().getWorkHomepage())
                 .addProperty(FOAF.currentProject, person.getWorkProfile().getCurrentProject())
                 .addProperty(FOAF.schoolHomepage, person.getWorkProfile().getSchoolHomepage())
                 .addProperty(FOAF.publications, person.getWorkProfile().getRecentPublication())
                 .addProperty(FOAF.skypeID, person.getSocialNetwork().getSkypeID())
-                .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog());
+                .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog())
+                .addProperty(FOAF.account, person.getSocialNetwork().getFacebookLink())
+                .addProperty(FOAF.account, person.getSocialNetwork().getLinkedIn())
+                .addProperty(FOAF.account, person.getSocialNetwork().getTwitterLink());
         person.getFriends().forEach(friend -> {
-            personTurtle.addProperty(FOAF.knows, friend.getBaseURI());
-            personTurtle.addProperty(FOAF.knows, friend.getEmail());
+            personTurtle.addProperty(FOAF.knows, model.createResource(friend.getBaseURI(), FOAF.Person)
+                    .addProperty(FOAF.firstName, friend.getFirstName())
+                    .addProperty(FOAF.mbox_sha1sum, friend.getEmail()));
         });
 
         int length = 10;

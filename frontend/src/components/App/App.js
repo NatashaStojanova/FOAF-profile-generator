@@ -4,6 +4,7 @@ import CreateProfile from "../CreateProfile/createProfile"
 import './App.css';
 import Header from "../Header/header";
 import Parent from "../Parent/parent";
+import Home from "../Home/home.js"
 
 class App extends Component {
 
@@ -19,6 +20,9 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <Header/>
+                    <Route path={"/"} exact render={() =>
+                        <Home/>}>
+                    </Route>
                     <Route path="/create" exact
                            render={() => <CreateProfile/>}>
                     </Route>

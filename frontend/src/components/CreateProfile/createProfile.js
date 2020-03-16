@@ -4,6 +4,7 @@ import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { Textarea as MdTextarea } from 'reactstrap-md-textarea';
+import Intro from "./Intro/intro";
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -160,12 +161,12 @@ class CreateProfile extends Component {
     render() {
         return (
             <div className="container">
+                <Intro/>
                 <Person onPersonChange={this.personChange}/>
                 <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                      onSocNetChange={this.socNetChange}/>
-                <button type="button" className="btn btn-success" onClick={this.savePerson}>Submit</button>
-                <div id="foafProfile">
-
+                <button type="button" className="btn btn-info" onClick={this.savePerson}>FOAF me</button>
+                <div id="foafProfile" align="left">
                 </div>
             </div>
         )

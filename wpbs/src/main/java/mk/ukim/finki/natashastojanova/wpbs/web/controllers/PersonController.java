@@ -14,7 +14,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.jena.base.Sys;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.util.FileManager;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
@@ -173,7 +175,7 @@ public class PersonController<RESTResource> {
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
         FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName);
         try {
-            model.write(out, "RDF/XML-ABBREV");
+            model.write(out, "RDF/XML");
         } finally {
             try {
                 out.close();
@@ -184,31 +186,30 @@ public class PersonController<RESTResource> {
         return new FileSystemResource(sendFile);
     }
 
-    //JSON FORMAT
-    /*@RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
-    public List<JSONObject> createFOAFprofile(@Valid @RequestBody Person person) throws JSONException {
+    @RequestMapping(value = "/profile", method = RequestMethod.POST, produces = "application/json")
+    public String addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
+        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        try {
+            out.write(s);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException closeException) {
+            }
+        }
+
         Model model = ModelFactory.createDefaultModel();
-        List<JSONObject> list=new ArrayList();
-        *//*Resource personTurtle = model.createResource(person.getBaseURI())
-                .addProperty(VCARD.Given, person.getFirstName())
-                .addProperty(VCARD.Family , person.getLastName())
-                .addProperty(VCARD.NICKNAME , person.getNickname())
-                .addProperty(VCARD.EMAIL , person.getEmail())
-                .addProperty(VCARD.TITLE , person.getTitle())
-                .addProperty(VCARD.Other, person.getHomepage());
-        model.write(System.out, "TURTLE");*//*
-        JSONObject obj = new JSONObject();
-        obj.put("firstName",person.getFirstName());
-        obj.put("lastName",person.getLastName());
-        obj.put("nickname",person.getNickname());
-        obj.put("baseURI",person.getBaseURI());
-        obj.put("email",person.getEmail());
-        obj.put("homepage",person.getHomepage());
-        obj.put("title",person.getTitle());
+        model.read(new FileInputStream("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf"), null);
+        Resource person = model.getResource("http://test.example.com/MainPerson.rdf");
+        Property firstName = model.createProperty("http://xmlns.com/foaf/0.1/firstName");
+        String firstNameValue = person.getProperty(firstName).getString();
 
-        list.add(obj);
-        System.out.println(list);
-        return list;
+        return "profile";
+    }
 
-    }*/
+
 }

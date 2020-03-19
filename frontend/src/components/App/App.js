@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import CreateProfile from "../CreateProfile/createProfile"
 import './App.css';
 import Header from "../Header/header";
-import Parent from "../Parent/parent";
 import Home from "../Home/home.js"
+import Explorer from "../Explorer/explorer";
 
 class App extends Component {
 
@@ -26,8 +26,8 @@ class App extends Component {
                     <Route path="/create" exact
                            render={() => <CreateProfile/>}>
                     </Route>
-                    <Route path="/proba" exact
-                           render={() => <Parent/>}>
+                    <Route path="/FOAFexplorer" exact
+                           render={() => <Explorer/>}>
                     </Route>
                 </Router>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import {Link, withRouter} from 'react-router-dom';
 
 const Person = (props) => {

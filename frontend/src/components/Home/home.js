@@ -1,12 +1,13 @@
-import React from 'react'
-import Carousel from '../Carousel/carousel'
+import {Container, Row, Col } from "reactstrap";
+import React,{Component} from 'react';
 
-const Home = () => {
-    return(
-        <div>
+class Home extends React.Component {
+    render() {
+        return (
 
-        </div>
-    )
+            <div>heelo</div>
+        );
+    }
 }
 
 export default Home;

@@ -9,20 +9,12 @@ import mk.ukim.finki.natashastojanova.wpbs.model.WorkProfile;
 import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.jena.base.Sys;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.util.FileManager;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
-
-import org.springframework.web.multipart.MultipartFile;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -151,6 +143,7 @@ public class PersonController<RESTResource> {
         Resource personTurtle = model.createResource(person.getBaseURI(), FOAF.Person)
                 .addProperty(FOAF.firstName, person.getFirstName())
                 .addProperty(FOAF.lastName, person.getLastName())
+                .addProperty(FOAF.mbox_sha1sum, person.getEmail())
                 .addProperty(FOAF.nick, person.getNickname())
                 .addProperty(FOAF.title, person.getTitle())
                 .addProperty(FOAF.homepage, person.getHomepage())
@@ -202,12 +195,34 @@ public class PersonController<RESTResource> {
             }
         }
 
-        Model model = ModelFactory.createDefaultModel();
-        model.read(new FileInputStream("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf"), null);
-        Resource person = model.getResource("http://test.example.com/MainPerson.rdf");
-        Property firstName = model.createProperty("http://xmlns.com/foaf/0.1/firstName");
-        String firstNameValue = person.getProperty(firstName).getString();
+        Model model = FileManager.get().loadModel("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\QEYWDsvsCO.rdf");
+        ResIterator iter = model.listSubjectsWithProperty(FOAF.weblog);
 
+        Resource r = iter.nextResource();
+        String firstName = r.getProperty(FOAF.firstName).getString();
+        String lastName = r.getProperty(FOAF.lastName).getString();
+        String nick = r.getProperty(FOAF.nick).getString();
+        String title = r.getProperty(FOAF.title).getString();
+        String homepage = r.getProperty(FOAF.homepage).getString();
+        String weblog = r.getProperty(FOAF.weblog).getString();
+        String currentProject = r.getProperty(FOAF.currentProject).getString();
+        String publications = r.getProperty(FOAF.publications).getString();
+        String schoolHomepage = r.getProperty(FOAF.schoolHomepage).getString();
+        String workHomepage = r.getProperty(FOAF.workplaceHomepage).getString();
+        String facebookLink = r.getProperty(FOAF.account).getString();
+        String linkedInLink = r.getProperty(FOAF.account).getString();
+        String SkypeID = r.getProperty(FOAF.account).getString();
+        String BlogLink = r.getProperty(FOAF.account).getString();
+
+
+        NodeIterator iterFriends = model.listObjectsOfProperty(FOAF.knows);
+        while (iterFriends.hasNext()) {
+            Resource resourceFriend = (Resource) iterFriends.nextNode();
+            String name = resourceFriend.getProperty(FOAF.firstName).getString();
+            String email = resourceFriend.getProperty(FOAF.mbox_sha1sum).getString();
+        }
+
+        String a = "pr";
         return "profile";
     }
 

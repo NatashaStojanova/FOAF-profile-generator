@@ -25,6 +25,10 @@ const PersonService = {
 
     addWorkProf: (workProf) => {
         return axios.post("/persons/new_work_profile", workProf)
+    },
+
+    addProfile: (profile) => {
+        return axios.post("/persons/profile", profile)
     }
 };
 

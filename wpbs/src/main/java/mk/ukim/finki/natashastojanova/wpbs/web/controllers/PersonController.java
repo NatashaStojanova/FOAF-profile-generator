@@ -1,5 +1,7 @@
 package mk.ukim.finki.natashastojanova.wpbs.web.controllers;
 
+import mk.ukim.finki.natashastojanova.wpbs.dto.Friends;
+import mk.ukim.finki.natashastojanova.wpbs.dto.Profile;
 import mk.ukim.finki.natashastojanova.wpbs.dto.SocialNetworkDTO;
 import mk.ukim.finki.natashastojanova.wpbs.dto.WorkProfileDTO;
 import mk.ukim.finki.natashastojanova.wpbs.exceptions.PersonNotFoundException;
@@ -180,7 +182,7 @@ public class PersonController<RESTResource> {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST, produces = "application/json")
-    public String addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Profile addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException {
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
@@ -197,33 +199,48 @@ public class PersonController<RESTResource> {
 
         Model model = FileManager.get().loadModel("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\QEYWDsvsCO.rdf");
         ResIterator iter = model.listSubjectsWithProperty(FOAF.weblog);
+        Profile p = new Profile();
 
         Resource r = iter.nextResource();
         String firstName = r.getProperty(FOAF.firstName).getString();
+        p.setName(firstName);
         String lastName = r.getProperty(FOAF.lastName).getString();
+        p.setSurname(lastName);
         String nick = r.getProperty(FOAF.nick).getString();
+        p.setNick(nick);
         String title = r.getProperty(FOAF.title).getString();
+        p.setTitle(title);
         String homepage = r.getProperty(FOAF.homepage).getString();
+        p.setHomepage(homepage);
         String weblog = r.getProperty(FOAF.weblog).getString();
+        p.setBlogLink(weblog);
         String currentProject = r.getProperty(FOAF.currentProject).getString();
+        p.setCurrentProject(currentProject);
         String publications = r.getProperty(FOAF.publications).getString();
+        p.setRecentPublication(publications);
         String schoolHomepage = r.getProperty(FOAF.schoolHomepage).getString();
+        p.setSchoolHomepage(schoolHomepage);
         String workHomepage = r.getProperty(FOAF.workplaceHomepage).getString();
         String facebookLink = r.getProperty(FOAF.account).getString();
+        p.setFacebookLink(facebookLink);
         String linkedInLink = r.getProperty(FOAF.account).getString();
-        String SkypeID = r.getProperty(FOAF.account).getString();
-        String BlogLink = r.getProperty(FOAF.account).getString();
-
+        p.setLinkedInLink(linkedInLink);
+        String skypeID = r.getProperty(FOAF.account).getString();
+        p.setSkypeID(skypeID);
 
         NodeIterator iterFriends = model.listObjectsOfProperty(FOAF.knows);
+        List<Friends> friends = new ArrayList<>();
         while (iterFriends.hasNext()) {
+            Friends f = new Friends();
             Resource resourceFriend = (Resource) iterFriends.nextNode();
             String name = resourceFriend.getProperty(FOAF.firstName).getString();
+            f.setName(name);
             String email = resourceFriend.getProperty(FOAF.mbox_sha1sum).getString();
+            f.setEmail(email);
+            friends.add(f);
         }
-
-        String a = "pr";
-        return "profile";
+        p.setFriends(friends);
+        return p;
     }
 
 

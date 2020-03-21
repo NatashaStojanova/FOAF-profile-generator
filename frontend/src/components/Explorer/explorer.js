@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Profile from "./Profile/profile";
+import Profile from "../Profile/profile";
 import PersonService from "../../service/personService";
 
 class Explorer extends Component{

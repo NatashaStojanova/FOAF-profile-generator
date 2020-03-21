@@ -10,8 +10,6 @@ import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.jena.atlas.json.io.parser.JSONParser;
-import org.apache.jena.base.Sys;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.util.FileManager;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -19,7 +17,6 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -248,6 +245,41 @@ public class PersonController<RESTResource> {
         }
         p.setFriends(friends);
         return p;
+    }
+
+    @RequestMapping(value = "/parse", method = RequestMethod.POST, produces = "application/json")
+    public FileSystemResource parseProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
+        JSONObject json = new JSONObject(s);
+        String profile = (String) json.get("yourProfile");
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
+        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        try {
+            out.write(profile);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException closeException) {
+            }
+        }
+
+        Model model = ModelFactory.createDefaultModel();
+        InputStream is = FileManager.get().open("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        model.read(is, null, "RDF/XML");
+        String outputFile = RandomStringUtils.random(length, useLetters, useNumbers);
+        FileWriter outWriter = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + outputFile);
+        try {
+            model.write(outWriter, "TURTLE");
+        } finally {
+            try {
+                outWriter.close();
+            } catch (IOException closeException) {
+            }
+        }
+        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + outputFile);
+        return new FileSystemResource(sendFile);
     }
 
 }

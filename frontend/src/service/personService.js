@@ -29,6 +29,10 @@ const PersonService = {
 
     addProfile: (profile) => {
         return axios.post("/persons/profile", profile)
+    },
+
+    parseProfile: (profile) => {
+        return axios.post("/persons/parse", profile)
     }
 };
 

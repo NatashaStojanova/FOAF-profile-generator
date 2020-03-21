@@ -5,6 +5,7 @@ import './App.css';
 import Header from "../Header/header";
 import Home from "../Home/home.js"
 import Explorer from "../Explorer/explorer";
+import Parser from "../Parser/parser";
 
 class App extends Component {
 
@@ -28,6 +29,9 @@ class App extends Component {
                     </Route>
                     <Route path="/FOAFexplorer" exact
                            render={() => <Explorer/>}>
+                    </Route>
+                    <Route path="/parse-profile" exact
+                           render={() => <Parser/>}>
                     </Route>
                 </Router>
             </div>

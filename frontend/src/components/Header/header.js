@@ -32,6 +32,9 @@ const Header = (props) => {
                         <NavItem>
                             <NavLink href="/FOAFexplorer/">FOAF Explorer</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink href="/parse-profile/">FOAF Parser</NavLink>
+                        </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
                                 Options

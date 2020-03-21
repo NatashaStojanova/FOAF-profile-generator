@@ -57,6 +57,10 @@ class Explorer extends Component{
                     <h5> Nickname: {this.state.profileFOAF.nick}</h5><br/>
                     <h5> Title: {this.state.profileFOAF.title}</h5><br/>
                     <h5> Homepage: {this.state.profileFOAF.homepage}</h5><br/>
+                    <h5> Facebook Link: {this.state.profileFOAF.facebookLink}</h5><br/>
+                    <h5> Twitter Link: {this.state.profileFOAF.twitterLink}</h5><br/>
+                    <h5> Skype ID: {this.state.profileFOAF.skypeID}</h5><br/>
+                    <h5> Blog link: {this.state.profileFOAF.blogLink}</h5><br/>
                     <h4>Friends:</h4>
                     {this.state.friendsList.map((friend, index) => {
                         return (

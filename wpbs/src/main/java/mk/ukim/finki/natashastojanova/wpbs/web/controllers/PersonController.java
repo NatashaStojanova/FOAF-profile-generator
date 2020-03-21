@@ -221,12 +221,15 @@ public class PersonController<RESTResource> {
         String schoolHomepage = r.getProperty(FOAF.schoolHomepage).getString();
         p.setSchoolHomepage(schoolHomepage);
         String workHomepage = r.getProperty(FOAF.workplaceHomepage).getString();
+        p.setWorkHomepage(workHomepage);
         String facebookLink = r.getProperty(FOAF.account).getString();
         p.setFacebookLink(facebookLink);
         String linkedInLink = r.getProperty(FOAF.account).getString();
         p.setLinkedInLink(linkedInLink);
         String skypeID = r.getProperty(FOAF.account).getString();
         p.setSkypeID(skypeID);
+        String twitterLink = r.getProperty(FOAF.account).getString();
+        p.setTwitterLink(twitterLink);
 
         NodeIterator iterFriends = model.listObjectsOfProperty(FOAF.knows);
         List<Friends> friends = new ArrayList<>();
@@ -242,6 +245,5 @@ public class PersonController<RESTResource> {
         p.setFriends(friends);
         return p;
     }
-
 
 }

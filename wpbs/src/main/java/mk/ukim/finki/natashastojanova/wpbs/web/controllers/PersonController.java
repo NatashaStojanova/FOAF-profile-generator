@@ -249,8 +249,11 @@ public class PersonController<RESTResource> {
 
     @RequestMapping(value = "/parse", method = RequestMethod.POST, produces = "application/json")
     public FileSystemResource parseProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
+        System.out.print(s);
         JSONObject json = new JSONObject(s);
         String profile = (String) json.get("yourProfile");
+        String fromFormat = (String) json.get("fromFormat");
+        String toFormat = (String) json.get("toFormat");
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
@@ -267,11 +270,11 @@ public class PersonController<RESTResource> {
 
         Model model = ModelFactory.createDefaultModel();
         InputStream is = FileManager.get().open("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
-        model.read(is, null, "RDF/XML");
+        model.read(is, null, fromFormat);
         String outputFile = RandomStringUtils.random(length, useLetters, useNumbers);
         FileWriter outWriter = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + outputFile);
         try {
-            model.write(outWriter, "TURTLE");
+            model.write(outWriter, toFormat);
         } finally {
             try {
                 outWriter.close();

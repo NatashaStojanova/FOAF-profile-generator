@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
-import Profile from "../Profile/profile";
+import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
+
 
 class Parser extends Component{
 
@@ -9,13 +10,16 @@ class Parser extends Component{
 
         let newProfile = {
             yourProfile: null,
-
+            fromFormat: null,
+            toFormat: null,
         };
 
         this.state = {
             profile: newProfile,
         };
     }
+
+
 
     parseFOAFProfile = (e) => {
         PersonService.parseProfile(this.state.profile).then(profileResp => {
@@ -41,7 +45,7 @@ class Parser extends Component{
     render() {
         return(
             <div className="container">
-                <Profile onProfileChange={this.profileChange}/>
+                <ProfileFormat onProfileChange={this.profileChange}/>
                 <button type="button" className="btn btn-info" onClick={this.parseFOAFProfile}>Parse me</button>
                 <div align="left" id="parserProfile">
                 </div>

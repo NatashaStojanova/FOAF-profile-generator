@@ -11,6 +11,9 @@ const Profile = (props) => {
             <Label for="exampleText">Text Area</Label>
             <Input type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange} placeholder="Enter your rdf"/>
         </FormGroup>
+
+
+
     )
 }
 export default Profile;

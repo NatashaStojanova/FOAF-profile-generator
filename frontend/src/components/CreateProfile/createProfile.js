@@ -39,16 +39,6 @@ class CreateProfile extends Component {
             recentPublication: null
         };
 
-        /*        PersonService.addPerson(newPerson).then(resp => {
-                    //resp.data.data.id -> socialNetworking['personID']
-                    PersonService.addSocNet(socialNetworking).then(resp3 => {
-                        PersonService.addWorkProf(workProfile).then(resp4 => {
-                            PersonService.addFriends(newFriends).then(resp2 => {
-                                console.table(resp4);
-                            })
-                        })
-                    })
-                });*/
 
         this.state = {
             person: newPerson,

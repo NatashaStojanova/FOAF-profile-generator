@@ -1,9 +1,7 @@
 package mk.ukim.finki.natashastojanova.wpbs.web.controllers;
 
-import mk.ukim.finki.natashastojanova.wpbs.dto.Friends;
-import mk.ukim.finki.natashastojanova.wpbs.dto.Profile;
-import mk.ukim.finki.natashastojanova.wpbs.dto.SocialNetworkDTO;
-import mk.ukim.finki.natashastojanova.wpbs.dto.WorkProfileDTO;
+
+import mk.ukim.finki.natashastojanova.wpbs.dto.*;
 import mk.ukim.finki.natashastojanova.wpbs.exceptions.PersonNotFoundException;
 import mk.ukim.finki.natashastojanova.wpbs.model.Person;
 import mk.ukim.finki.natashastojanova.wpbs.model.SocialNetwork;
@@ -12,8 +10,12 @@ import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.jena.atlas.json.io.parser.JSONParser;
+import org.apache.jena.base.Sys;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.util.FileManager;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
@@ -182,14 +184,16 @@ public class PersonController<RESTResource> {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.POST, produces = "application/json")
-    public Profile addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Profile addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
+        JSONObject json = new JSONObject(s);
+        String profile = (String) json.get("yourProfile");
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
         FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
         try {
-            out.write(s);
+            out.write(profile);
         } finally {
             try {
                 out.close();
@@ -197,7 +201,7 @@ public class PersonController<RESTResource> {
             }
         }
 
-        Model model = FileManager.get().loadModel("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\QEYWDsvsCO.rdf");
+        Model model = FileManager.get().loadModel("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
         ResIterator iter = model.listSubjectsWithProperty(FOAF.weblog);
         Profile p = new Profile();
 

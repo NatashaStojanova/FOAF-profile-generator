@@ -15,7 +15,7 @@ class Explorer extends Component{
         this.state = {
             profile: newProfile,
             profileFOAF: '',
-            friends: '',
+            friendsList: [],
 
         };
     }
@@ -25,6 +25,7 @@ class Explorer extends Component{
             //document.getElementById("foafExplorer").innerText = profileResp.name
             this.setState({
                 profileFOAF: profileResp.data,
+                friendsList: profileResp.data.friends,
             })
             alert("SENT DATA");
         }).catch(err => {
@@ -56,6 +57,13 @@ class Explorer extends Component{
                     <h5> Nickname: {this.state.profileFOAF.nick}</h5><br/>
                     <h5> Title: {this.state.profileFOAF.title}</h5><br/>
                     <h5> Homepage: {this.state.profileFOAF.homepage}</h5><br/>
+                    <h4>Friends:</h4>
+                    {this.state.friendsList.map((friend, index) => {
+                        return (
+                            <h5 key={index}>Name: {friend.name} Email {friend.email} </h5>
+
+                        )
+                    })}
                 </div>
             </div>
 

@@ -37,6 +37,7 @@ public class PersonController<RESTResource> {
     private final PersonService personService;
     private final SocialNetworkService socialNetworkService;
     private final WorkProfileService workProfileService;
+    private String localPath = "C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\";
 
     public PersonController(PersonService personService, SocialNetworkService socialNetworkService, WorkProfileService workProfileService) {
         this.personService = personService;
@@ -167,7 +168,7 @@ public class PersonController<RESTResource> {
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName);
+        FileWriter out = new FileWriter(localPath + fileName);
         try {
             model.write(out, "RDF/XML");
         } finally {
@@ -176,7 +177,7 @@ public class PersonController<RESTResource> {
             } catch (IOException closeException) {
             }
         }
-        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName);
+        final File sendFile = new File(localPath + fileName);
         return new FileSystemResource(sendFile);
     }
 
@@ -188,7 +189,7 @@ public class PersonController<RESTResource> {
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        FileWriter out = new FileWriter(localPath + fileName + ".rdf");
         try {
             out.write(profile);
         } finally {
@@ -198,7 +199,7 @@ public class PersonController<RESTResource> {
             }
         }
 
-        Model model = FileManager.get().loadModel("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        Model model = FileManager.get().loadModel(localPath + fileName + ".rdf");
         ResIterator iter = model.listSubjectsWithProperty(FOAF.weblog);
         Profile p = new Profile();
 
@@ -258,7 +259,7 @@ public class PersonController<RESTResource> {
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter out = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        FileWriter out = new FileWriter(localPath + fileName + ".rdf");
         try {
             out.write(profile);
         } finally {
@@ -269,10 +270,10 @@ public class PersonController<RESTResource> {
         }
 
         Model model = ModelFactory.createDefaultModel();
-        InputStream is = FileManager.get().open("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + fileName + ".rdf");
+        InputStream is = FileManager.get().open(localPath + fileName + ".rdf");
         model.read(is, null, fromFormat);
         String outputFile = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter outWriter = new FileWriter("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + outputFile);
+        FileWriter outWriter = new FileWriter(localPath + outputFile);
         try {
             model.write(outWriter, toFormat);
         } finally {
@@ -281,7 +282,7 @@ public class PersonController<RESTResource> {
             } catch (IOException closeException) {
             }
         }
-        final File sendFile = new File("C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\" + outputFile);
+        final File sendFile = new File(localPath + outputFile);
         return new FileSystemResource(sendFile);
     }
 

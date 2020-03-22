@@ -45,7 +45,7 @@ const ProfileFormat = (props) => {
             <br/>
             <br/>
             <Input type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange}
-                   style={{height: "370px"}} placeholder="Enter the data you want to parse"/>
+                   style={{height: "370px"}} placeholder="Enter your rdf"/>
         </FormGroup>
 
 

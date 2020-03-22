@@ -13,14 +13,14 @@ const SocialNetwork = (props) => {
 
         <Form>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2 mb-lg-0">
                 <Label for="blog" className="mr-sm">Blog Link:</Label>
                 <Col sm={5}>
                     <Input type="url" name="blog" id="blog" placeholder="www.blog.com" onChange={onSocNetChange}/>
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2 mb-lg-0">
                 <Label for="facebookLink" className="mr-sm">Facebook Link</Label>
                 <Col sm={5}>
                     <Input type="url" name="facebookLink" id="facebookLink"
@@ -28,7 +28,7 @@ const SocialNetwork = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="twitterLink" className="mr-sm">Twitter Link:</Label>
                 <Col sm={5}>
                     <Input type="url" name="twitterLink" id="twitterLink" placeholder="www.twitter.com/your-profile"
@@ -36,7 +36,7 @@ const SocialNetwork = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="skypeID" className="mr-sm">Skype:</Label>
                 <Col sm={5}>
                     <Input type="url" name="skypeID" id="skypeID" placeholder="Skype account"
@@ -44,7 +44,7 @@ const SocialNetwork = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-0  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-0  mb-lg-0">
                 <Label for="linkedIn" className="mr-sm">Linked In:</Label>
                 <Col sm={5}>
                     <Input type="url" name="linkedIn" id="linkedIn" placeholder="www.linkedin.com/in/your-profile/"

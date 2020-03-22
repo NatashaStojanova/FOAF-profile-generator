@@ -10,7 +10,7 @@ class Tab extends Component {
     constructor(props) {
         super(props);
         this.state = ({
-            "activeTab": 1,
+            "activeTab": '1',
             "friendCounter": 3
         })
     }
@@ -43,6 +43,7 @@ class Tab extends Component {
     render() {
         return (
             <div>
+                <br/>
                 <Nav tabs>
                     <NavItem>
                         <NavLink

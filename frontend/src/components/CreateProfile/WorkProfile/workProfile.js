@@ -13,7 +13,7 @@ const WorkProfile = (props) => {
 
         <Form>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="currentProject" className="mr-sm">Current Project:</Label>
                 <Col sm={5}>
                     <Input type="text" name="currentProject" id="currentProject"
@@ -21,7 +21,7 @@ const WorkProfile = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="recentPublication" className="mr-sm">Recent Publication:</Label>
                 <Col sm={5}>
                     <Input type="text" name="recentPublication" id="recentPublication"
@@ -29,7 +29,7 @@ const WorkProfile = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="schoolHomepage" className="mr-sm">School Homepage:</Label>
                 <Col sm={5}>
                     <Input type="text" name="schoolHomepage" id="schoolHomepage" placeholder="Your School homepage..."
@@ -37,7 +37,7 @@ const WorkProfile = (props) => {
                 </Col>
             </FormGroup>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-sm-2">
+            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
                 <Label for="workHomepage" className="mr-sm">Work Homepage:</Label>
                 <Col sm={5}>
                     <Input type="text" name="workHomepage" id="workHomepage" placeholder="Your work homepage..."

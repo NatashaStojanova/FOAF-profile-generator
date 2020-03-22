@@ -86,7 +86,7 @@ class CreateProfile extends Component {
                     PersonService.addFriends(this.state.friends).then(resp => {
                         alert("Successfully added person");
                         PersonService.generateProfile(newPerson).then(personResp => {
-                            debugger;
+                            document.getElementById("foafProfile").style.border = "thin solid #d3d3d3";
                             document.getElementById("foafProfile").innerText = personResp.data;
                             alert("Successfully created Profile")
                         })
@@ -153,9 +153,9 @@ class CreateProfile extends Component {
             <div className="container">
                 <Intro/>
                 <Person onPersonChange={this.personChange}/>
+                <button type="button" className="btn btn-info" onClick={this.savePerson}>FOAF me</button>
                 <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                      onSocNetChange={this.socNetChange}/>
-                <button type="button" className="btn btn-info" onClick={this.savePerson}>FOAF me</button>
                 <div id="foafProfile" align="left">
                 </div>
             </div>

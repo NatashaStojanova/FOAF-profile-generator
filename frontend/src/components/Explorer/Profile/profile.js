@@ -8,8 +8,12 @@ const Profile = (props) => {
     };
     return(
         <FormGroup>
-            <Label for="exampleText">Text Area</Label>
-            <Input type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange} placeholder="Enter your rdf"/>
+            <br/>
+            <h3>Enter your RDF here:</h3>
+            <text>This tool will generate an HTML view of FOAF data, complete with referenced images and links to other data. The RDF Validatorvalidates the structure of the RDF triples in the FOAF profile. But,the visualizerallows you to see the FOAF profile data in a HTML view, as if you had it on your personal website.</text>
+            <br/>
+            <br/>
+            <Input type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange} style={{height: "370px"}} placeholder="Enter your rdf"/>
         </FormGroup>
 
 

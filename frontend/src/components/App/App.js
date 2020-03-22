@@ -6,6 +6,7 @@ import Header from "../Header/header";
 import Home from "../Home/home.js"
 import Explorer from "../Explorer/explorer";
 import Parser from "../Parser/parser";
+import FooterPage from "../FooterPage/footerPage";
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
                     <Route path="/parse-profile" exact
                            render={() => <Parser/>}>
                     </Route>
+                    <FooterPage/>
                 </Router>
             </div>
 

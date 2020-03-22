@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
+import {FormGroup, Input} from "reactstrap";
 
 
 class Parser extends Component{
@@ -23,6 +24,7 @@ class Parser extends Component{
 
     parseFOAFProfile = (e) => {
         PersonService.parseProfile(this.state.profile).then(profileResp => {
+            document.getElementById("parserProfile").style.border = "thin solid #d3d3d3";
             document.getElementById("parserProfile").innerText = profileResp.data
             alert("PROFILE PARSED");
         }).catch(err => {
@@ -46,9 +48,13 @@ class Parser extends Component{
         return(
             <div className="container">
                 <ProfileFormat onProfileChange={this.profileChange}/>
-                <button type="button" className="btn btn-info" onClick={this.parseFOAFProfile}>Parse me</button>
-                <div align="left" id="parserProfile">
+                <button type="button" className="btn btn-info" onClick={this.parseFOAFProfile}>Submit</button>
+                <br/>
+                <div  id="parserProfile">
+                    <br/>
+                    <br/>
                 </div>
+
             </div>
 
         )

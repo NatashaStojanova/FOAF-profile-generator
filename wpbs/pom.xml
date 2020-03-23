@@ -24,7 +24,7 @@
             <artifactId>apache-jena-libs</artifactId>
             <version>3.12.0</version>
             <type>pom</type>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>

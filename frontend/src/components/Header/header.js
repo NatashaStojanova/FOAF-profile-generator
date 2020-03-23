@@ -30,25 +30,22 @@ const Header = (props) => {
                             <NavLink href="/create/">Create profile</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/FOAFexplorer/">FOAF Explorer</NavLink>
+                            <NavLink href="/FOAF-explorer">FOAF Explorer</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/parse-profile/">FOAF Parser</NavLink>
+                            <NavLink href="/FOAF-translator">FOAF Translator</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                Options
+                                More
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem>
-                                    Option 1
+                                    Linked Data
                                 </DropdownItem>
+                                <DropdownItem divider/>
                                 <DropdownItem>
-                                    Option 2
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>
-                                    Reset
+                                    XML RDF
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

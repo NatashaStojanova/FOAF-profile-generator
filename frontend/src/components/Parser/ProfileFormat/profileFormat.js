@@ -9,7 +9,7 @@ const ProfileFormat = (props) => {
     return(
         <FormGroup>
             <br/>
-            <h3>RDF Translator</h3>
+            <h3>FOAF Translator</h3>
             <text>RDF Translator is a multi-format conversion tool for structured markup. It provides translations
                 between data formats ranging from RDF/XML to RDFa or Microdata. The service allows for conversions
                 triggered either by URI or by direct text input. Furthermore it comes with a straightforward REST API

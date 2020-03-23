@@ -9,7 +9,7 @@ const Profile = (props) => {
     return(
         <FormGroup>
             <br/>
-            <h3>RDF Explorer</h3>
+            <h3>FOAF Explorer</h3>
             <text>This tool will generate an HTML view of FOAF data, complete with referenced images and links to other data. The RDF Validatorvalidates the structure of the RDF triples in the FOAF profile. But,the visualizerallows you to see the FOAF profile data in a HTML view, as if you had it on your personal website.</text>
             <br/>
             <br/>

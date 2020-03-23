@@ -25,6 +25,7 @@ public class WorkProfile {
     private String schoolHomepage;
     private String currentProject;
     private String recentPublication;
+    private String basedNear;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "person_id", nullable = false)

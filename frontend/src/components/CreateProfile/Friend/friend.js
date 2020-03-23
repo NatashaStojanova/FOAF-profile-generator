@@ -25,20 +25,21 @@ class Friend extends Component {
             <div>
                 <Form inline>
                     <FormGroup className="mb-2 mr-sm-2 mb-lg-0">
-                        <Label for="firstName" className="mr-sm-2">First Name</Label>
-                        <Input type="text" name="firstName" id="firstName" placeholder="Given Name"
+                        <Label for="firstName" className="mr-sm-2">First Name (Given)</Label>
+                        <Input type="text" name="firstName" id="firstName" placeholder="First Name"
                                onChange={this.onFriendChange}/>
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2  mb-lg-0">
                         <Label for="email" className="mr-sm-2">Email</Label>
-                        <Input type="email" name="email" id="email" placeholder="@idk.cool"
+                        <Input type="email" name="email" id="email" placeholder="example@address.com"
                                onChange={this.onFriendChange}/>
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2  mb-lg-0">
                         <Label for="baseURI" className="mr-sm-2">Base URI</Label>
-                        <Input type="url" name="baseURI" id="baseURI" placeholder="URI" onChange={this.onFriendChange}/>
+                        <Input type="url" name="baseURI" id="baseURI" placeholder="http://"
+                               onChange={this.onFriendChange}/>
                     </FormGroup>
 
                 </Form>

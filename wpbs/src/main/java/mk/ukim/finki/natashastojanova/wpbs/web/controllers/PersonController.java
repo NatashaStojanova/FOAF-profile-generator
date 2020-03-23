@@ -51,13 +51,13 @@ public class PersonController<RESTResource> {
         //check if the Person exists
         Optional<Person> optPerson = personService.findByEmail(person.getEmail());
         if (optPerson.isPresent()) {
-            //ako postoi mailot ili base urito->znachi deka postoi toj chovek vo baza
             if (optPerson.get().getEmail().equals(person.getEmail()) &&
                     optPerson.get().getBaseURI().equals(person.getBaseURI())) {
                 optPerson.get().setFirstName(person.getFirstName());
                 optPerson.get().setLastName(person.getLastName());
                 optPerson.get().setBaseURI(person.getBaseURI());
                 optPerson.get().setEmail(person.getEmail());
+                optPerson.get().setImage(person.getImage());
                 optPerson.get().setNickname(person.getNickname());
                 optPerson.get().setHomepage(person.getHomepage());
                 optPerson.get().setTitle(person.getTitle());
@@ -75,14 +75,15 @@ public class PersonController<RESTResource> {
         List<Person> personFriends = new ArrayList<>();
         friends.remove(0);
         friends.forEach(friend -> {
-            Optional<Person> friend1 = personService.findByEmail(friend.getEmail());
-            if (friend1.isPresent()) {
-                //ako postoi vo baza toj covek, togash ne treba da pravam nov tuku treba da go povrzam so Pwrson-ot
-                personFriends.add(friend1.get());
+            Optional<Person> friendIter = personService.findByEmail(friend.getEmail());
+            if (friendIter.isPresent()) {
+                //if that friends already exists id database, then don't create new one,
+                //but connect the existing friend with this one.(they are the same person)
+                personFriends.add(friendIter.get());
                 System.out.println(personFriends);
                 person.get().setFriends(personFriends);
             } else {
-                //dokolku ne postoi->togash treba da se kreira vo bazata
+                //if that friends does not exist in database, then create him
                 personFriends.add(friend);
                 person.get().setFriends(personFriends);
                 personService.save(personFriends);
@@ -119,6 +120,7 @@ public class PersonController<RESTResource> {
         workProfile.setRecentPublication(profile.getRecentPublication());
         workProfile.setSchoolHomepage(profile.getSchoolHomepage());
         workProfile.setWorkHomepage(profile.getWorkHomepage());
+        workProfile.setBasedNear(profile.getBasedNear());
         workProfile.setPerson(person);
         workProfile = workProfileService.save(workProfile);
         person.setWorkProfile(workProfile);
@@ -133,7 +135,7 @@ public class PersonController<RESTResource> {
         return personService.findAll();
     }
 
-    //TURTLE FORMAT
+    //generate new FOAF profile
     @RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     FileSystemResource createFOAFprofile(@Valid @RequestBody Person newPerson) throws IOException {
@@ -143,9 +145,11 @@ public class PersonController<RESTResource> {
         Person person = check.get();
         Model model = ModelFactory.createDefaultModel();
         Resource personTurtle = model.createResource(person.getBaseURI(), FOAF.Person)
+                .addProperty(FOAF.account,person.getBaseURI())
                 .addProperty(FOAF.firstName, person.getFirstName())
                 .addProperty(FOAF.lastName, person.getLastName())
                 .addProperty(FOAF.mbox_sha1sum, person.getEmail())
+                .addProperty(FOAF.img , person.getImage())
                 .addProperty(FOAF.nick, person.getNickname())
                 .addProperty(FOAF.title, person.getTitle())
                 .addProperty(FOAF.homepage, person.getHomepage())
@@ -153,6 +157,7 @@ public class PersonController<RESTResource> {
                 .addProperty(FOAF.currentProject, person.getWorkProfile().getCurrentProject())
                 .addProperty(FOAF.schoolHomepage, person.getWorkProfile().getSchoolHomepage())
                 .addProperty(FOAF.publications, person.getWorkProfile().getRecentPublication())
+                .addProperty(FOAF.based_near,person.getWorkProfile().getBasedNear())
                 .addProperty(FOAF.skypeID, person.getSocialNetwork().getSkypeID())
                 .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog())
                 .addProperty(FOAF.account, person.getSocialNetwork().getFacebookLink())
@@ -162,6 +167,7 @@ public class PersonController<RESTResource> {
             personTurtle.addProperty(FOAF.knows, model.createResource(friend.getBaseURI(), FOAF.Person)
                     .addProperty(FOAF.firstName, friend.getFirstName())
                     .addProperty(FOAF.mbox_sha1sum, friend.getEmail()));
+
         });
 
         int length = 10;
@@ -210,6 +216,12 @@ public class PersonController<RESTResource> {
         p.setSurname(lastName);
         String nick = r.getProperty(FOAF.nick).getString();
         p.setNick(nick);
+        String image =  r.getProperty(FOAF.img).getString();
+        p.setImage(image);
+        String email =  r.getProperty(FOAF.mbox_sha1sum).getString();
+        p.setEmail(email);
+        String baseURI = r.getProperty(FOAF.account).getString();
+        p.setBaseURI(baseURI);
         String title = r.getProperty(FOAF.title).getString();
         p.setTitle(title);
         String homepage = r.getProperty(FOAF.homepage).getString();
@@ -224,6 +236,8 @@ public class PersonController<RESTResource> {
         p.setSchoolHomepage(schoolHomepage);
         String workHomepage = r.getProperty(FOAF.workplaceHomepage).getString();
         p.setWorkHomepage(workHomepage);
+        String basedNear = r.getProperty(FOAF.based_near).getString();
+        p.setBasedNear(basedNear);
         String facebookLink = r.getProperty(FOAF.account).getString();
         p.setFacebookLink(facebookLink);
         String linkedInLink = r.getProperty(FOAF.account).getString();
@@ -240,8 +254,8 @@ public class PersonController<RESTResource> {
             Resource resourceFriend = (Resource) iterFriends.nextNode();
             String name = resourceFriend.getProperty(FOAF.firstName).getString();
             f.setName(name);
-            String email = resourceFriend.getProperty(FOAF.mbox_sha1sum).getString();
-            f.setEmail(email);
+            String emailFriend = resourceFriend.getProperty(FOAF.mbox_sha1sum).getString();
+            f.setEmail(emailFriend);
             friends.add(f);
         }
         p.setFriends(friends);

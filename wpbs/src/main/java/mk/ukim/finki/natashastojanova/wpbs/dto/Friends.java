@@ -15,4 +15,5 @@ import lombok.Setter;
 public class Friends {
     private String name;
     private String email;
+    private String baseURI;
 }

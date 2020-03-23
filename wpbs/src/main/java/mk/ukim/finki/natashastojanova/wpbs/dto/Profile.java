@@ -16,11 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Profile {
     private String email;
+    private String baseURI;
     private String name;
     private String surname;
     private String title;
     private String homepage;
     private String nick;
+    private String image;
     private String facebookLink;
     private String twitterLink;
     private String blogLink;
@@ -30,6 +32,7 @@ public class Profile {
     private String schoolHomepage;
     private String currentProject;
     private String recentPublication;
+    private String basedNear;
     private List<Friends> friends;
 
 

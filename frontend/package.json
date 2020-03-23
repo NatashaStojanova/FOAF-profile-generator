@@ -17,6 +17,7 @@
     "react-dom": "^16.13.0",
     "react-form-control": "^1.0.14",
     "react-jsx": "^1.0.0",
+    "react-material-ui-form-validator": "^2.0.10",
     "react-scripts": "3.4.0",
     "reactstrap": "^8.4.1",
     "reactstrap-md-textarea": "^3.0.0"

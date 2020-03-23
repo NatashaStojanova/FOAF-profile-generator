@@ -14,4 +14,5 @@ public class WorkProfileDTO {
     private String schoolHomepage;
     private String currentProject;
     private String recentPublication;
+    private String basedNear;
 }

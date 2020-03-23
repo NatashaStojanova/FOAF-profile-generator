@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
 import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
-import {FormGroup, Input} from "reactstrap";
-
 
 class Parser extends Component{
 
@@ -28,7 +26,7 @@ class Parser extends Component{
             document.getElementById("parserProfile").innerText = profileResp.data
             alert("PROFILE PARSED");
         }).catch(err => {
-            alert(err)
+            alert("Input data is not in a valid format, or you didn't select the correct input/output format.")
         })
     }
 
@@ -54,7 +52,6 @@ class Parser extends Component{
                     <br/>
                     <br/>
                 </div>
-
             </div>
 
         )

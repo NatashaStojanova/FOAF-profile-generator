@@ -18,6 +18,7 @@ class CreateProfile extends Component {
             email:    null,
             baseURI:  null,
             title:    null,
+            image: null,
         };
 
         let newFriends = [];
@@ -36,7 +37,8 @@ class CreateProfile extends Component {
             workHomepage: null,
             schoolHomepage: null,
             currentProject: null,
-            recentPublication: null
+            recentPublication: null,
+            basedNear: null,
         };
 
 
@@ -84,11 +86,11 @@ class CreateProfile extends Component {
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
 
                     PersonService.addFriends(this.state.friends).then(resp => {
-                        alert("Successfully added person");
+                        //alert("Successfully added person");
                         PersonService.generateProfile(newPerson).then(personResp => {
                             document.getElementById("foafProfile").style.border = "thin solid #d3d3d3";
                             document.getElementById("foafProfile").innerText = personResp.data;
-                            alert("Successfully created Profile")
+                            //alert("Successfully created Profile")
                         })
                     }).catch(err => {
                         alert(err)

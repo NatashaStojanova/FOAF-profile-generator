@@ -11,34 +11,34 @@ class CreateProfile extends Component {
         super(props);
 
         let newPerson = {
-            firstName: null,
-            lastName: null,
-            nickname: null,
-            homepage: null,
-            email:    null,
-            baseURI:  null,
-            title:    null,
-            image: null,
+            firstName: "",
+            lastName: "",
+            nickname: "",
+            homepage: "",
+            email: "",
+            baseURI: "",
+            title: "",
+            image: "",
         };
 
         let newFriends = [];
 
         let newSocNet = {
-            personID: null,
-            blog: null,
-            skypeID: null,
-            linkedIn: null,
-            facebookLink: null,
-            twitterLink: null,
+            personID: "",
+            blog: "",
+            skypeID: "",
+            linkedIn: "",
+            facebookLink: "",
+            twitterLink: "",
         };
 
         let newWorkProf = {
-            personID: null,
-            workHomepage: null,
-            schoolHomepage: null,
-            currentProject: null,
-            recentPublication: null,
-            basedNear: null,
+            personID: "",
+            workHomepage: "",
+            schoolHomepage: "",
+            currentProject: "",
+            recentPublication: "",
+            basedNear: "",
         };
 
 

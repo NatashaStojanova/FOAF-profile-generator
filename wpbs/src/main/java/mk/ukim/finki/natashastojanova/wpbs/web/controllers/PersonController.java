@@ -37,6 +37,8 @@ public class PersonController<RESTResource> {
     private final PersonService personService;
     private final SocialNetworkService socialNetworkService;
     private final WorkProfileService workProfileService;
+
+    /*Add your local path*/
     private String localPath = "C:\\Users\\natas\\Desktop\\FCSE\\WPBS\\wpbs\\profiles\\";
 
     public PersonController(PersonService personService, SocialNetworkService socialNetworkService, WorkProfileService workProfileService) {

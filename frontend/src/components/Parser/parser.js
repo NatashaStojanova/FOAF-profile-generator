@@ -24,7 +24,7 @@ class Parser extends Component{
         PersonService.parseProfile(this.state.profile).then(profileResp => {
             document.getElementById("parserProfile").style.border = "thin solid #d3d3d3";
             document.getElementById("parserProfile").innerText = profileResp.data
-            alert("PROFILE PARSED");
+            //alert("PROFILE PARSED");
         }).catch(err => {
             alert("Input data is not in a valid format, or you didn't select the correct input/output format.")
         })
@@ -48,7 +48,7 @@ class Parser extends Component{
                 <ProfileFormat onProfileChange={this.profileChange}/>
                 <button type="button" className="btn btn-info" onClick={this.parseFOAFProfile}>Submit</button>
                 <br/>
-                <div  id="parserProfile">
+                <div id="parserProfile" align="left">
                     <br/>
                     <br/>
                 </div>

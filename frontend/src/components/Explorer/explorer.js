@@ -9,6 +9,7 @@ class Explorer extends Component{
 
         let newProfile = {
             yourProfile: null,
+            fromFormat: null,
 
         };
 
@@ -30,7 +31,7 @@ class Explorer extends Component{
             })
             //alert("SENT DATA");
         }).catch(err => {
-            alert("Input data is not in a correct format")
+            alert("Please choose input format")
         })
     }
 

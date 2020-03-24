@@ -7,10 +7,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
 } from 'reactstrap';
 
 const Header = (props) => {
@@ -21,33 +17,19 @@ const Header = (props) => {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">Basic FOAF profile</NavbarBrand>
+                <NavbarBrand href="/"><p>FOAF profile</p></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/create/">Create profile</NavLink>
+                            <NavLink href="/create/"><p>Create profile</p></NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/FOAF-explorer">FOAF Explorer</NavLink>
+                            <NavLink href="/FOAF-explorer"><p>FOAF Explorer</p></NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/FOAF-translator">FOAF Translator</NavLink>
+                            <NavLink href="/FOAF-translator"><p>FOAF Translator</p></NavLink>
                         </NavItem>
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle nav caret>
-                                More
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                                <DropdownItem>
-                                    Linked Data
-                                </DropdownItem>
-                                <DropdownItem divider/>
-                                <DropdownItem>
-                                    XML RDF
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
                     </Nav>
                 </Collapse>
             </Navbar>

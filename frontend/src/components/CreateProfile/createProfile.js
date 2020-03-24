@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import PersonService from "../../service/personService";
 import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import { Textarea as MdTextarea } from 'reactstrap-md-textarea';
 import Intro from "./Intro/intro";
 
 class CreateProfile extends Component {
@@ -52,18 +50,6 @@ class CreateProfile extends Component {
 
 
     savePerson = (e) => {
-
-        //1. Save newPerson -> response returns same person with ID
-        //2. Save newFriends -> append the received ID
-        //3. Save socialNetworking -> append the received ID
-        //4. Save workProfile -> append the received ID
-        /*e.preventDefault();
-
-        //console.table(this.state.socNet);
-        //console.table(this.state.workProf);
-        console.table(this.state.friends);
-
-        return;*/
 
         PersonService.addPerson(this.state.person).then(personResp => {
             let newPerson = personResp.data;

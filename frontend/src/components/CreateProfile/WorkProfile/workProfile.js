@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Label, Input} from 'reactstrap';
 import Col from "react-bootstrap/Col";
 
 const WorkProfile = (props) => {

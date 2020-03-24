@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
-import {AvFeedback, AvForm, AvInput, AvGroup, AvField} from "availity-reactstrap-validation";
+import {Label} from 'reactstrap';
+import {AvFeedback, AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
 
 const ProfileFormat = (props) => {
     const onProfileChange = (e) => {
@@ -29,7 +29,8 @@ const ProfileFormat = (props) => {
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
                         <option value="N-TRIPLES">N-TRIPLES</option>
-                        <option value="JSON-LD">JSON-LD</option>
+                            <option value="TRIG">TRIG</option>
+                            <option value="N3">N3</option>
                         </AvInput>
                         <AvFeedback>This field is required!</AvFeedback>
                     </AvGroup>
@@ -42,7 +43,8 @@ const ProfileFormat = (props) => {
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
                         <option value="N-TRIPLES">N-TRIPLES</option>
-                        <option value="JSON-LD">JSON-LD</option>
+                            <option value="TRIG">TRIG</option>
+                            <option value="N3">N3</option>
                         </AvInput>
                         <AvFeedback>This field is required!</AvFeedback>
                     </AvGroup>

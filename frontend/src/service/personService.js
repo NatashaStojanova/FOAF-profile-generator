@@ -1,5 +1,4 @@
 import axios from '../custom-axios/axios'
-import qs from 'qs'
 
 const PersonService = {
     fetchPersons: () => {

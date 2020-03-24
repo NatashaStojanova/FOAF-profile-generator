@@ -55,7 +55,7 @@ class Explorer extends Component{
                     <br/>
                     <br/>
                     <h3>Person Base URI: {this.state.profileFOAF.baseURI} </h3>
-                    <h3>Photo: </h3><img src={this.state.profileFOAF.image} width={500}></img>
+                    <h3>Photo: </h3><img src={this.state.profileFOAF.image} alt='profilePhoto' width={500}></img>
                     <br/>
                     <br/>
                     <br/>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-import {Link, withRouter} from 'react-router-dom';
-import {AvFeedback, AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
+import {Label} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
+import {AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
 
 class Friend extends Component {
     constructor(props) {

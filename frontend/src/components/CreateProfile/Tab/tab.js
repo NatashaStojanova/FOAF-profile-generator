@@ -1,10 +1,9 @@
-import React, {Component, useState} from 'react';
-import {TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
+import React, {Component} from 'react';
+import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col} from 'reactstrap';
 import classnames from 'classnames';
 import Friend from "../Friend/friend";
 import SocialNetwork from "../SocialNetwork/socialNetwork";
 import WorkProfile from "../WorkProfile/workProfile";
-import ModalExample from "../../ModalExample/modalExample.js"
 
 class Tab extends Component {
     constructor(props) {

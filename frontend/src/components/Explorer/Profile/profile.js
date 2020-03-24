@@ -1,5 +1,4 @@
 import React from "react";
-import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import {AvFeedback, AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
 
 const Profile = (props) => {

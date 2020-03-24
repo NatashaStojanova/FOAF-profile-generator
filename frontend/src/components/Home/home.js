@@ -1,8 +1,5 @@
 import React from 'react';
 import {Jumbotron,} from 'reactstrap';
-import {
-    Link
-} from "react-router-dom";
 
 
 const Home = (props) => {
@@ -26,6 +23,7 @@ const Home = (props) => {
                     <a href="http://www.foaf-project.org/" className="btn btn-primary">Learn more</a>
                 </p>
             </Jumbotron>
+            <br/><br/><br/>
         </div>
     );
 };

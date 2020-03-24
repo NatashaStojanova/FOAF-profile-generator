@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import {Link, withRouter} from 'react-router-dom';
+import {AvFeedback, AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
 
 const Person = (props) => {
 
@@ -11,53 +12,55 @@ const Person = (props) => {
 
     return (
 
-        <Form inline>
+        <AvForm inline>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="baseURI" className="mr-sm-2">Base URI</Label>
-                <Input type="url" name="baseURI" id="baseURI" onChange={onPersonChange} placeholder="http://"/>
-            </FormGroup>
+            <AvGroup className="mb-2 mr-sm-2 mb-sm-2">
+                <Label for="baseURI" className="mr-sm-2">Base URI*</Label>
+                <AvInput type="url" name="baseURI" id="baseURI" onChange={onPersonChange} placeholder="http://"
+                         required/>
+            </AvGroup>
 
-            <FormGroup className="mb-auto mr-sm-2 mb-sm-2">
+            <AvGroup className="mb-auto mr-sm-2 mb-sm-2">
                 <Label for="firstName" className="mr-sm-2">First Name (Given)</Label>
-                <Input type="text" name="firstName" id="firstName" onChange={onPersonChange} placeholder="First Name"/>
-            </FormGroup>
+                <AvInput type="text" name="firstName" id="firstName" onChange={onPersonChange}
+                         placeholder="First Name"/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
+            <AvGroup className="mb-2 mr-sm-2 mb-sm-2">
                 <Label for="lastName" className="mr-sm-2">Last Name (Family)</Label>
-                <Input type="text" name="lastName" id="lastName" onChange={onPersonChange} placeholder="Last Name"/>
-            </FormGroup>
+                <AvInput type="text" name="lastName" id="lastName" onChange={onPersonChange} placeholder="Last Name"/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
+            <AvGroup className="mb-2 mr-sm-2 mb-sm-2">
                 <Label for="nickname" className="mr-sm-2">Nickname</Label>
-                <Input type="text" name="nickname" id="nickname" onChange={onPersonChange} placeholder="Nickname"/>
-            </FormGroup>
+                <AvInput type="text" name="nickname" id="nickname" onChange={onPersonChange} placeholder="Nickname"/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="email" className="mr-sm-2">Email</Label>
-                <Input type="email" name="email" id="email" onChange={onPersonChange}
-                       placeholder="example@address.com"/>
-            </FormGroup>
+            <AvGroup className="mb-2 mr-sm-2 mb-sm-2">
+                <Label for="email" className="mr-sm-2">Email*</Label>
+                <AvInput type="email" name="email" id="email" onChange={onPersonChange}
+                         placeholder="example@address.com" required/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
+            <AvGroup className="mb-2 mr-sm-2 mb-sm-2">
                 <Label for="title" className="mr-sm-2">Title</Label>
-                <Input type="text" name="title" id="title" onChange={onPersonChange}
-                       placeholder="Mr, Ms, Mrs, Dr, etc"/>
-            </FormGroup>
+                <AvInput type="text" name="title" id="title" onChange={onPersonChange}
+                         placeholder="Mr, Ms, Mrs, Dr, etc"/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-lg-4 mb-sm-2">
+            <AvGroup className="mb-2 mr-lg-4 mb-sm-2">
                 <Label for="homepage" className="mr-sm-2">Homepage</Label>
-                <Input type="url" name="homepage" id="homepage" onChange={onPersonChange}
-                       placeholder="http://"/>
-            </FormGroup>
+                <AvInput type="url" name="homepage" id="homepage" onChange={onPersonChange}
+                         placeholder="http://"/>
+            </AvGroup>
 
-            <FormGroup className="mb-2 mr-lg-4 mb-sm-2">
+            <AvGroup className="mb-2 mr-lg-4 mb-sm-2">
                 <Label for="image" className="mr-sm-2">Image</Label>
-                <Input type="url" name="image" id="image" onChange={onPersonChange}
-                       placeholder="http://"/>
-            </FormGroup>
+                <AvInput type="url" name="image" id="image" onChange={onPersonChange}
+                         placeholder="http://"/>
+            </AvGroup>
 
-        </Form>
+        </AvForm>
 
     );
 }

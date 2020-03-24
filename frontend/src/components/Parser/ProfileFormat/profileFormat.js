@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
+import {AvFeedback, AvForm, AvInput, AvGroup, AvField} from "availity-reactstrap-validation";
 
 const ProfileFormat = (props) => {
     const onProfileChange = (e) => {
@@ -7,7 +8,8 @@ const ProfileFormat = (props) => {
         props.onProfileChange(e.target.name, e.target.value);
     };
     return(
-        <FormGroup>
+        <AvForm>
+            <AvGroup>
             <br/>
             <h3>FOAF Translator</h3>
             <text>RDF Translator is a multi-format conversion tool for structured markup. It provides translations
@@ -17,36 +19,41 @@ const ProfileFormat = (props) => {
             </text>
             <br/>
             <br/>
-            <Form inline className="flex-center">
-                <FormGroup className="mb-2 mr-lg-5 mb-sm-2">
+                <AvForm inline className="flex-center">
+                    <AvGroup className="mb-2 mr-lg-5 mb-sm-2">
                     <Label for="fromFormat" className="mr-sm-2">From Format:</Label>
-                    <Input type="select" name="fromFormat" id="fromFormat" style={{weight: "150px"}}
-                           onChange={onProfileChange}>
+                        <AvInput type="select" name="fromFormat" id="fromFormat" style={{weight: "150px"}}
+                                 onChange={onProfileChange} required>
                         <option>---parse from---</option>
                         <option value="TURTLE">TURTLE</option>
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
                         <option value="N-TRIPLES">N-TRIPLES</option>
                         <option value="JSON-LD">JSON-LD</option>
-                    </Input>
-                </FormGroup>
-                <FormGroup className="mb-0 mr-lg-5 mb-sm-2">
+                        </AvInput>
+                        <AvFeedback>This field is required!</AvFeedback>
+                    </AvGroup>
+                    <AvGroup className="mb-0 mr-lg-5 mb-sm-2">
                     <Label for="toFormat" className="mr-sm-2">To Format:</Label>
-                    <Input type="select" name="toFormat" id="toFormat" defaultValue="-" onChange={onProfileChange}>
+                        <AvInput type="select" name="toFormat" id="toFormat" defaultValue="-" onChange={onProfileChange}
+                                 required>
                         <option>---parse into---</option>
                         <option value="TURTLE">TURTLE</option>
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
                         <option value="N-TRIPLES">N-TRIPLES</option>
                         <option value="JSON-LD">JSON-LD</option>
-                    </Input>
-                </FormGroup>
-            </Form>
+                        </AvInput>
+                        <AvFeedback>This field is required!</AvFeedback>
+                    </AvGroup>
+                </AvForm>
             <br/>
             <br/>
-            <Input type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange}
-                   style={{height: "370px"}} placeholder="Enter your rdf"/>
-        </FormGroup>
+                <AvInput type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange}
+                         style={{height: "370px"}} placeholder="Enter your rdf" required/>
+                <AvFeedback>This field is required!</AvFeedback>
+            </AvGroup>
+        </AvForm>
 
 
 

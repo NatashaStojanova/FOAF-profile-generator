@@ -15,7 +15,12 @@ const Intro = () =>  {
                   completely private. This is particularly applicable with informartion such as an email address - which
                   most people do not want to give out in an effort to avoid spam.
               </text>
+              <br/>
           </div>
+            <div align="">
+                <text>(All fields marked with* are mandatory)</text>
+            </div>
+
             <br/>
             <br/>
 

@@ -191,11 +191,12 @@ public class PersonController<RESTResource> {
     public Profile addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
         JSONObject json = new JSONObject(s);
         String profile = (String) json.get("yourProfile");
+        String fromFormat = (String) json.get("fromFormat");
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
         String fileName = RandomStringUtils.random(length, useLetters, useNumbers);
-        FileWriter out = new FileWriter(localPath + fileName + ".rdf");
+        FileWriter out = new FileWriter(localPath + fileName + fromFormat);
         try {
             out.write(profile);
         } finally {
@@ -205,7 +206,7 @@ public class PersonController<RESTResource> {
             }
         }
 
-        Model model = FileManager.get().loadModel(localPath + fileName + ".rdf");
+        Model model = FileManager.get().loadModel(localPath + fileName + fromFormat);
         ResIterator iter = model.listSubjectsWithProperty(FOAF.weblog);
         Profile p = new Profile();
 

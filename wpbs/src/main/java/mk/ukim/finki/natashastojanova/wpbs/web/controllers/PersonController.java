@@ -80,7 +80,7 @@ public class PersonController<RESTResource> {
             Optional<Person> friendIter = personService.findByEmail(friend.getEmail());
             if (friendIter.isPresent()) {
                 //if that friends already exists id database, then don't create new one,
-                //but connect the existing friend with this one.(they are the same person)
+                //but connect the existing friend with this.(they are the same person)
                 personFriends.add(friendIter.get());
                 System.out.println(personFriends);
                 person.get().setFriends(personFriends);

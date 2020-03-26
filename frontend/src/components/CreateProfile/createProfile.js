@@ -3,6 +3,7 @@ import PersonService from "../../service/personService";
 import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import Intro from "./Intro/intro";
+import {Button} from "reactstrap";
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -44,7 +45,8 @@ class CreateProfile extends Component {
             person: newPerson,
             socNet: newSocNet,
             workProf: newWorkProf,
-            friends: newFriends
+            friends: newFriends,
+            disable: true,
         };
     }
 
@@ -124,16 +126,22 @@ class CreateProfile extends Component {
     });
 
     friendsChange = ((friendID, target, value) => {
-        let id = friendID;
-        this.setState(prevState => {
-            let friends = this.state.friends;
-            if (friends[id] === undefined || friends[id] === null)
-                friends[id] = {};
-            friends[id][target] = value;
-            return {
-                friends: friends
-            }
-        })
+        if(value === ''){
+            this.setState({disable: true});
+        }
+        else {
+            let id = friendID;
+            this.setState(prevState => {
+                let friends = this.state.friends;
+                if (friends[id] === undefined || friends[id] === null)
+                    friends[id] = {};
+                friends[id][target] = value;
+                return {
+                    friends: friends
+                }
+            })
+            this.setState({disable: false});
+        }
     });
 
     render() {
@@ -141,7 +149,7 @@ class CreateProfile extends Component {
             <div className="container">
                 <Intro/>
                 <Person onPersonChange={this.personChange}/>
-                <button type="button" className="btn btn-info" onClick={this.savePerson}>FOAF me</button>
+                <Button type="button" className="btn btn-info" disabled={this.state.disable} onClick={this.savePerson}>FOAF me</Button>
                 <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                      onSocNetChange={this.socNetChange}/>
                 <div id="foafProfile" align="left">

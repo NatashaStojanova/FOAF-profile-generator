@@ -16,17 +16,17 @@ const Profile = (props) => {
             <br/>
             <AvGroup className="mb-2 mr-lg-5 mb-sm-2">
                 <AvForm inline>
-                    <Label for="fromFormat" className="mr-sm-2">Choose Format:</Label>
+                    <Label for="fromFormat" className="mr-sm-2">Input Format:</Label>
                     <AvInput type="select" name="fromFormat" id="fromFormat" style={{weight: "20"}}
                              onChange={onProfileChange}>
-                        <option>---choose format---</option>
-                        <option value=".ttl">TURTLE</option>
                         <option value=".rdf">RDF/XML</option>
+                        <option value=".ttl">TURTLE</option>
                         <option value=".n3">N3</option>
                     </AvInput>
                     <AvFeedback>This field is required!</AvFeedback>
                 </AvForm>
             </AvGroup>
+            <br/>
             <AvGroup>
                 <AvInput type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange}
                          style={{height: "370px"}} placeholder="Enter your rdf" required/>

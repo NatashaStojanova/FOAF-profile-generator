@@ -247,7 +247,7 @@ public class PersonController<RESTResource> {
         p.setLinkedInLink(linkedInLink);
         String twitterLink = r.getProperty(FOAF.account).getString();
         p.setTwitterLink(twitterLink);*/
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             String iterLinks = r.getProperty(FOAF.account).getString();
             if (iterLinks.contains("facebook")) {
                 p.setFacebookLink(iterLinks);
@@ -257,11 +257,14 @@ public class PersonController<RESTResource> {
                 p.setLinkedInLink(iterLinks);
                 r.getProperty(FOAF.account).remove();
                 continue;
-            } else
+            } else if (iterLinks.contains("twitter")) {
                 p.setTwitterLink(iterLinks);
+                r.getProperty(FOAF.account).remove();
+                continue;
+            } else
+                p.setBaseURI(iterLinks);
             r.getProperty(FOAF.account).remove();
             continue;
-
         }
         String skypeID = r.getProperty(FOAF.skypeID).getString();
         p.setSkypeID(skypeID);

@@ -60,39 +60,52 @@ class Explorer extends Component{
             <div className="container">
                 <Profile onProfileChange={this.profileChange}/>
                 <Button type="button" className="btn btn-info" disabled={this.state.disable} onClick={this.saveProfile}>Explore</Button>
-                <div align="center" id="profileData" style={{visibility: "hidden"}}><br/>
-                    <h5>Person Base URI: <a href={this.state.profileFOAF.baseURI}>{this.state.profileFOAF.baseURI}</a>  {/*<img src={this.state.profileFOAF.image} alt='profilePhoto' width={150}></img>*/} </h5>
+                <div align="left" id="profileData" style={{visibility: "hidden"}}><br/>
+                    <h5><b>Person Base URI:</b> <a
+                        href={this.state.profileFOAF.baseURI}>{this.state.profileFOAF.baseURI}</a> {/*<img src={this.state.profileFOAF.image} alt='profilePhoto' width={150}></img>*/}
+                    </h5>
                     <br/><hr/><br/>
-                    <h5> First name: {this.state.profileFOAF.name}</h5> <br/><hr/><br/>
-                    <h5> Last name: {this.state.profileFOAF.surname}</h5> <br/><hr/><br/>
-                    <h5> Nickname: {this.state.profileFOAF.nick}</h5> <br/><hr/><br/>
-                    <h5>{this.state.profileFOAF.name} knows:</h5>
+                    <h5><b>First name:</b> {this.state.profileFOAF.name}</h5> <br/>
+                    <hr/>
+                    <br/>
+                    <h5><b>Last name:</b> {this.state.profileFOAF.surname}</h5> <br/>
+                    <hr/>
+                    <br/>
+                    <h5><b>Nickname:</b>{this.state.profileFOAF.nick}</h5> <br/>
+                    <hr/>
+                    <br/>
+                    <h5><b>{this.state.profileFOAF.name} knows:</b></h5>
                     {this.state.friendsList.map((friend, index) => {
                         return (
-                            <h5 key={index}>Name:  {friend.name} | E-mail: {friend.email} </h5>
+                            <h5 key={index}><b>Name:</b> {friend.name}<br/>
+                                <b>E-mail</b>: {friend.email}<br/><br/></h5>
 
                         )
                     })} <br/><hr/><br/>
-                    <h5> Title: {this.state.profileFOAF.title}</h5><br/><hr/><br/>
-                    <h5> Homepage: <a href={this.state.profileFOAF.homepage}>{this.state.profileFOAF.homepage}</a></h5>
+                    <h5><b>Title: </b>{this.state.profileFOAF.title}</h5><br/>
+                    <hr/>
+                    <br/>
+                    <h5><b>Homepage: </b><a href={this.state.profileFOAF.homepage}>{this.state.profileFOAF.homepage}</a>
+                    </h5>
                     <br/><hr/><br/>
-                    <h5> Facebook Link: <a
+                    <h5><b> Facebook Link: </b><a
                         href={this.state.profileFOAF.facebookLink}>{this.state.profileFOAF.facebookLink}</a></h5> <br/><hr/><br/>
-                    <h5> Twitter Link: <a
+                    <h5><b>Twitter Link:</b> <a
                         href={this.state.profileFOAF.twitterLink}>{this.state.profileFOAF.twitterLink}</a></h5><br/><hr/><br/>
-                    <h5> LinkedIn Link: <a
+                    <h5><b> LinkedIn Link:</b> <a
                         href={this.state.profileFOAF.linkedInLink}>{this.state.profileFOAF.linkedInLink}</a></h5><br/><hr/><br/>
-                    <h5> Blog link: <a href={this.state.profileFOAF.blogLink}>{this.state.profileFOAF.blogLink}</a></h5>
+                    <h5><b> Blog link:</b> <a
+                        href={this.state.profileFOAF.blogLink}>{this.state.profileFOAF.blogLink}</a></h5>
                     <br/><hr/><br/>
-                    <h5> Skype ID: {this.state.profileFOAF.skypeID}</h5>
+                    <h5><b> Skype ID:</b> {this.state.profileFOAF.skypeID}</h5>
                     <br/><hr/><br/>
-                    <h5>Current project: {this.state.profileFOAF.currentProject}</h5>
+                    <h5><b>Current project: </b>{this.state.profileFOAF.currentProject}</h5>
                     <br/><hr/><br/>
-                    <h5>Recent publication: {this.state.profileFOAF.recentPublication}</h5>
+                    <h5><b>Recent publication: </b>{this.state.profileFOAF.recentPublication}</h5>
                     <br/><hr/><br/>
-                    <h5>Work homepage: {this.state.profileFOAF.workHomepage}</h5>
+                    <h5><b>Work homepage:</b> {this.state.profileFOAF.workHomepage}</h5>
                     <br/><hr/><br/>
-                    <h5> Based Near: {this.state.profileFOAF.basedNear}</h5><br/>
+                    <h5><b> Based Near:</b> {this.state.profileFOAF.basedNear}</h5><br/>
                 </div>
             </div>
 

@@ -21,12 +21,12 @@ const ProfileFormat = (props) => {
             <br/>
                 <AvForm inline className="flex-center">
                     <AvGroup className="mb-2 mr-lg-5 mb-sm-2">
-                    <Label for="fromFormat" className="mr-sm-2">From Format:</Label>
-                        <AvInput type="select" name="fromFormat" id="fromFormat" style={{weight: "150px"}}
-                                 onChange={onProfileChange} required>
-                        <option>---parse from---</option>
+                        <Label for="fromFormat" className="mr-sm-2">Input Format:</Label>
+                        <AvInput type="select" name="fromFormat" id="fromFormat" defaultValue="RDF/XML"
+                                 style={{weight: "150px"}}
+                                 onChange={onProfileChange}>
+                            <option value="RDF/XML">RDF/XML</option>
                         <option value="TURTLE">TURTLE</option>
-                        <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
                         <option value="N-TRIPLES">N-TRIPLES</option>
                             <option value="TRIG">TRIG</option>
@@ -35,10 +35,9 @@ const ProfileFormat = (props) => {
                         <AvFeedback>This field is required!</AvFeedback>
                     </AvGroup>
                     <AvGroup className="mb-0 mr-lg-5 mb-sm-2">
-                    <Label for="toFormat" className="mr-sm-2">To Format:</Label>
-                        <AvInput type="select" name="toFormat" id="toFormat" defaultValue="-" onChange={onProfileChange}
-                                 required>
-                        <option>---parse into---</option>
+                        <Label for="toFormat" className="mr-sm-2">Output Format:</Label>
+                        <AvInput type="select" name="toFormat" id="toFormat" defaultValue="TURTLE"
+                                 onChange={onProfileChange}>
                         <option value="TURTLE">TURTLE</option>
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
@@ -49,7 +48,6 @@ const ProfileFormat = (props) => {
                         <AvFeedback>This field is required!</AvFeedback>
                     </AvGroup>
                 </AvForm>
-            <br/>
             <br/>
                 <AvInput type="textarea" name="yourProfile" id="yourProfile" onChange={onProfileChange}
                          style={{height: "370px"}} placeholder="Enter your rdf" required/>

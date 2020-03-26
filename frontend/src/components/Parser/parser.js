@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
+import {Button} from "reactstrap";
 
 class Parser extends Component{
 
@@ -9,12 +10,13 @@ class Parser extends Component{
 
         let newProfile = {
             yourProfile: null,
-            fromFormat: null,
-            toFormat: null,
+            fromFormat: "RDF/XML",
+            toFormat: "TURTLE",
         };
 
         this.state = {
             profile: newProfile,
+            disable: true,
         };
     }
 
@@ -32,21 +34,26 @@ class Parser extends Component{
 
 
     profileChange = ((target, value) => {
-        this.setState(prevState => {
-            let profile = this.state.profile;
-            profile[target] = value;
-            return {
-                profile: profile
-            }
-        })
+        if (value === '') {
+            this.setState({disable: true});
+        } else {
+            this.setState(prevState => {
+                let profile = this.state.profile;
+                profile[target] = value;
+                return {
+                    profile: profile
+                }
+            })
+            this.setState({disable: false});
+        }
     });
-
 
     render() {
         return(
             <div className="container">
                 <ProfileFormat onProfileChange={this.profileChange}/>
-                <button type="button" className="btn btn-info" onClick={this.parseFOAFProfile}>Submit</button>
+                <Button type="button" className="btn btn-info" disabled={this.state.disable}
+                        onClick={this.parseFOAFProfile}>Parse profile</Button>
                 <br/>
                 <div id="parserProfile" align="left">
                     <br/>

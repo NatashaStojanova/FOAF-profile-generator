@@ -219,12 +219,12 @@ public class PersonController<RESTResource> {
         p.setSurname(lastName);
         String nick = r.getProperty(FOAF.nick).getString();
         p.setNick(nick);
-        String image =  r.getProperty(FOAF.img).getString();
+        String image = r.getProperty(FOAF.img).getString();
         p.setImage(image);
-        String email =  r.getProperty(FOAF.mbox_sha1sum).getString();
+        String email = r.getProperty(FOAF.mbox_sha1sum).getString();
         p.setEmail(email);
-        String baseURI = r.getProperty(FOAF.account).getString();
-        p.setBaseURI(baseURI);
+        /*String baseURI = r.getProperty(FOAF.account).getString();
+        p.setBaseURI(baseURI);*/
         String title = r.getProperty(FOAF.title).getString();
         p.setTitle(title);
         String homepage = r.getProperty(FOAF.homepage).getString();
@@ -241,14 +241,30 @@ public class PersonController<RESTResource> {
         p.setWorkHomepage(workHomepage);
         String basedNear = r.getProperty(FOAF.based_near).getString();
         p.setBasedNear(basedNear);
-        String facebookLink = r.getProperty(FOAF.account).getString();
+       /* String facebookLink = r.getProperty(FOAF.account).getString();
         p.setFacebookLink(facebookLink);
         String linkedInLink = r.getProperty(FOAF.account).getString();
         p.setLinkedInLink(linkedInLink);
-        String skypeID = r.getProperty(FOAF.account).getString();
-        p.setSkypeID(skypeID);
         String twitterLink = r.getProperty(FOAF.account).getString();
-        p.setTwitterLink(twitterLink);
+        p.setTwitterLink(twitterLink);*/
+        for (int i = 0; i < 3; i++) {
+            String iterLinks = r.getProperty(FOAF.account).getString();
+            if (iterLinks.contains("facebook")) {
+                p.setFacebookLink(iterLinks);
+                r.getProperty(FOAF.account).remove();
+                continue;
+            } else if (iterLinks.contains("linkedin")) {
+                p.setLinkedInLink(iterLinks);
+                r.getProperty(FOAF.account).remove();
+                continue;
+            } else
+                p.setTwitterLink(iterLinks);
+            r.getProperty(FOAF.account).remove();
+            continue;
+
+        }
+        String skypeID = r.getProperty(FOAF.skypeID).getString();
+        p.setSkypeID(skypeID);
 
         NodeIterator iterFriends = model.listObjectsOfProperty(FOAF.knows);
         List<Friends> friends = new ArrayList<>();

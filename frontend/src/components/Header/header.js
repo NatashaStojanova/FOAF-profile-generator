@@ -16,13 +16,13 @@ const Header = (props) => {
 
     return (
         <div>
-            <Navbar color="light" light expand="md">
+            <Navbar color="warning" dark expand="md">
                 <NavbarBrand href="/"><p>FOAF profile</p></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/create/"><p>Create profile</p></NavLink>
+                            <NavLink href="/create/" dark><p>Create profile</p></NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="/FOAF-explorer"><p>FOAF Explorer</p></NavLink>

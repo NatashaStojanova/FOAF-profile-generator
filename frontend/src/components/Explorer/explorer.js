@@ -60,7 +60,7 @@ class Explorer extends Component{
             <div className="container">
                 <Profile onProfileChange={this.profileChange}/>
                 <Button type="button" className="btn btn-info" disabled={this.state.disable} onClick={this.saveProfile}>Explore</Button>
-                <div align="justify" id="profileData" style={{visibility: "hidden"}}><br/>
+                <div align="center" id="profileData" style={{visibility: "hidden"}}><br/>
                     <h5>Person Base URI: <a href={this.state.profileFOAF.baseURI}>{this.state.profileFOAF.baseURI}</a>  {/*<img src={this.state.profileFOAF.image} alt='profilePhoto' width={150}></img>*/} </h5>
                     <br/><hr/><br/>
                     <h5> First name: {this.state.profileFOAF.name}</h5> <br/><hr/><br/>

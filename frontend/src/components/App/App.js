@@ -8,7 +8,6 @@ import Explorer from "../Explorer/explorer";
 import Parser from "../Parser/parser";
 import FooterPage from "../FooterPage/footerPage";
 
-
 class App extends Component {
 
     constructor(props) {

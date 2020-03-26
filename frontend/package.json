@@ -23,7 +23,9 @@
     "react-scripts": "3.4.0",
     "react-user-profile": "^1.0.3",
     "reactstrap": "^8.4.1",
-    "reactstrap-md-textarea": "^3.0.0"
+    "reactstrap-md-textarea": "^3.0.0",
+    "styled-components": "^5.0.1",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

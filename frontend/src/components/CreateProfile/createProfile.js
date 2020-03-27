@@ -4,6 +4,8 @@ import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import Intro from "./Intro/intro";
 import {Button} from "reactstrap";
+import Profile from "../Explorer/Profile/profile";
+import ShowProfile from "../Explorer/ShowProfile/showProfile";
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -48,11 +50,23 @@ class CreateProfile extends Component {
             friends: newFriends,
             disable: true,
         };
+
+        this.setState({
+            "errorMessage": null,
+        })
+    }
+
+    componentDidMount() {
+        this.setState({
+            "errorMessage": null
+        })
     }
 
 
     savePerson = (e) => {
-
+        this.setState({
+            "errorMessage": null,
+        });
         PersonService.addPerson(this.state.person).then(personResp => {
             let newPerson = personResp.data;
 
@@ -79,18 +93,35 @@ class CreateProfile extends Component {
                             document.getElementById("foafProfile").style.border = "thin solid #d3d3d3";
                             document.getElementById("foafProfile").innerText = personResp.data;
                             //alert("Successfully created Profile")
+                        }).catch(error => {
+                            alert("GENERATE")
+                            this.setState({
+                                "errorMessage": error.data
+                            });
                         })
-                    }).catch(err => {
-                        alert(err)
+                    }).catch(error => {
+                        alert("F")
+                        this.setState({
+                            "errorMessage": error.data
+                        });
                     })
-                }).catch(err => {
-                    alert(err)
+                }).catch(error => {
+                    alert("WP")
+                    this.setState({
+                        "errorMessage": error.data
+                    });
                 })
-            }).catch(err => {
-                alert(err)
+            }).catch(error => {
+                alert("S")
+                this.setState({
+                    "errorMessage": error.data
+                });
             })
-        }).catch(err => {
-            alert(err)
+        }).catch(error => {
+            alert("P")
+            this.setState({
+                "errorMessage": error.data
+            });
         })
 
     }
@@ -146,15 +177,42 @@ class CreateProfile extends Component {
 
     render() {
         return (
+
             <div className="container">
-                <Intro/>
-                <Person onPersonChange={this.personChange}/>
-                <Button type="button" className="btn btn-info" disabled={this.state.disable} onClick={this.savePerson}>FOAF me</Button>
-                <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
-                     onSocNetChange={this.socNetChange}/>
-                <div id="foafProfile" align="left">
+                <div className="form-group">
+                    <div className="col-md-1"/>
+                    <br/>
+                    {(this.state.errorMessage !== null ? <div>
+                        <div className="container border-error" style={{border: "1px solid red", padding: "1em"}}>
+
+                            <h3 className="text-danger">
+                                An error occured
+                            </h3>
+                            <p>Please notice that your email and base URI can't be blank, either your friends </p>
+                            <br/>
+                            <a href="/create"
+                               className="btn btn-primary text-upper">
+                                Go back
+                            </a>
+                            <div className="text-danger">
+                                {this.state.errorMessage}
+                            </div>
+                        </div>
+                        <br/>
+                    </div> : <div><Intro/>
+                        <Person onPersonChange={this.personChange}/>
+                        <Button type="button" className="btn btn-info" disabled={this.state.disable}
+                                onClick={this.savePerson}>FOAF me</Button>
+                        <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
+                             onSocNetChange={this.socNetChange}/>
+                        <div align="left" id="foafProfile"><br/>
+                        </div>
+                    </div>)}
+
                 </div>
             </div>
+
+
         )
     }
 }

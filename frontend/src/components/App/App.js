@@ -7,7 +7,7 @@ import Home from "../Home/home.js"
 import Explorer from "../Explorer/explorer";
 import Parser from "../Parser/parser";
 import FooterPage from "../FooterPage/footerPage";
-
+import Parent from "../Parent/parent"
 class App extends Component {
 
     constructor(props) {
@@ -33,6 +33,9 @@ class App extends Component {
                     </Route>
                     <Route path="/FOAF-translator" exact
                            render={() => <Parser/>}>
+                    </Route>
+                    <Route path="/exe" exact
+                           render={() => <Parent/>}>
                     </Route>
                     <FooterPage/>
                 </Router>

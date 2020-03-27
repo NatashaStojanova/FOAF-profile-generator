@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
 import {Button} from "reactstrap";
+import Profile from "../Explorer/Profile/profile";
+import ShowProfile from "../Explorer/ShowProfile/showProfile";
 
 class Parser extends Component{
 
@@ -18,17 +20,33 @@ class Parser extends Component{
             profile: newProfile,
             disable: true,
         };
+
+        this.setState({
+            "errorMessage": null,
+        })
+    }
+
+    componentDidMount() {
+        this.setState({
+            "errorMessage": null
+        })
     }
 
 
 
     parseFOAFProfile = (e) => {
+        this.setState({
+            "errorMessage": null,
+        });
         PersonService.parseProfile(this.state.profile).then(profileResp => {
             document.getElementById("parserProfile").style.border = "thin solid #d3d3d3";
             document.getElementById("parserProfile").innerText = profileResp.data
             //alert("PROFILE PARSED");
-        }).catch(err => {
-            alert("Input data is not in a valid format, or you didn't select the correct input/output format.")
+        }).catch(error => {
+            console.log(error.data)
+            this.setState({
+                "errorMessage": error.data
+            });
         })
     }
 
@@ -50,16 +68,42 @@ class Parser extends Component{
 
     render() {
         return(
+
             <div className="container">
-                <ProfileFormat onProfileChange={this.profileChange}/>
-                <Button type="button" className="btn btn-info" disabled={this.state.disable}
-                        onClick={this.parseFOAFProfile}>Parse profile</Button>
-                <br/>
-                <div id="parserProfile" align="left">
+                <div className="form-group">
+                    <div className="col-md-1"/>
                     <br/>
-                    <br/>
+                    {(this.state.errorMessage !== null ? <div>
+                        <div className="container border-error" style={{border: "1px solid red", padding: "1em"}}>
+
+                            <h3 className="text-danger">
+                                An error occured
+                            </h3>
+                            <p>Input data was not in a correct format or you didn't select the correct input/output
+                                format.</p>
+                            <br/>
+                            <a href="FOAF-translator"
+                               className="btn btn-primary text-upper">
+                                Go back
+                            </a>
+                            <div className="text-danger">
+                                {this.state.errorMessage}
+                            </div>
+                        </div>
+                        <br/>
+                    </div> : <div><ProfileFormat onProfileChange={this.profileChange}/>
+                        <Button type="button" className="btn btn-info" disabled={this.state.disable}
+                                onClick={this.parseFOAFProfile}>Parse profile</Button>
+                        <br/>
+                        <div id="parserProfile" align="left">
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>)}
+
                 </div>
             </div>
+
 
         )
     }

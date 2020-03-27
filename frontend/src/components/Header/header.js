@@ -17,6 +17,7 @@ const Header = (props) => {
     return (
         <div>
             <Navbar color="primary" dark expand="md">
+
                 <NavbarBrand href="/"><p>FOAF profile</p></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>

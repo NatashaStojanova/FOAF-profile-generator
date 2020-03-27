@@ -11,11 +11,13 @@
     "availity-reactstrap-validation": "^2.6.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "material-table": "^1.57.2",
     "material-ui": "^0.20.2",
     "mdbreact": "^4.25.4",
+    "prop-types": "latest",
     "qs": "latest",
     "react": "^16.13.0",
-    "react-bootstrap": "^1.0.0-beta.17",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",
     "react-form-control": "^1.0.14",
     "react-jsx": "^1.0.0",
@@ -24,8 +26,7 @@
     "react-user-profile": "^1.0.3",
     "reactstrap": "^8.4.1",
     "reactstrap-md-textarea": "^3.0.0",
-    "styled-components": "^5.0.1",
-    "prop-types": "latest"
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

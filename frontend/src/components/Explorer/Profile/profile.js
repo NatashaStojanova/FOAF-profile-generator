@@ -1,6 +1,7 @@
 import React from "react";
 import {AvFeedback, AvForm, AvInput, AvGroup} from "availity-reactstrap-validation";
 import {Label} from "reactstrap";
+import Parent from "../../Parent/parent";
 
 const Profile = (props) => {
     const onProfileChange = (e) => {

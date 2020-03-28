@@ -11,8 +11,16 @@ const Profile = (props) => {
     return(
         <AvForm>
             <br/>
-            <h3>FOAF Explorer</h3>
-            <text>This tool will generate an HTML view of FOAF data, complete with referenced images and links to other data. The RDF Validator validates the structure of the RDF triples in the FOAF profile. But,the visualizer allows you to see the FOAF profile data in a HTML view, as if you had it on your personal website.</text>
+            <h2>FOAF Explorer</h2>
+            <br/>
+            <h5>Even though FOAF and the Semantic Web is designed for machines, it can sometimes be interesting to
+                browse the data same way the "regular" web is browsed.</h5>
+            <text>The FOAF Explorer tries to present the information and assertions in a human-readable format,
+                currently by way of direct transformations of the raw RDF/XML to XHTML complete with referenced images
+                and links to other data. The RDF Validator validates the structure of the RDF triples in the FOAF
+                profile. But,the visualizer allows you to see the FOAF profile data in a HTML view, as if you had it on
+                your personal website.
+            </text>
             <br/>
             <br/>
             <AvGroup className="mb-2 mr-lg-5 mb-sm-2">

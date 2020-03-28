@@ -11,12 +11,20 @@ const ProfileFormat = (props) => {
         <AvForm>
             <AvGroup>
             <br/>
-            <h3>FOAF Translator</h3>
+                <h2>FOAF Translator</h2>
             <text>RDF Translator is a multi-format conversion tool for structured markup. It provides translations
-                between data formats ranging from RDF/XML to RDFa or Microdata. The service allows for conversions
-                triggered either by URI or by direct text input. Furthermore it comes with a straightforward REST API
-                for developers.
+                between data formats ranging from RDF/XML to TURTLE etc.
             </text>
+                <br/>
+                <text>The service allows for conversions
+                    triggered by direct text input. Furthermore it comes with a straightforward REST API
+                    for developers.
+                </text>
+                <br/>
+                <text>After you input your data, it parses the foaf:Person element which contains fields such as name,
+                    birth date, photo, homepage etc. It then looks for people in the FOAF document that are described as
+                    someone you know, parses the information available and adds it to a public collection property
+                </text>
             <br/>
             <br/>
                 <AvForm inline className="flex-center">

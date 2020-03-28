@@ -10,7 +10,7 @@ class Tab extends Component {
         super(props);
         this.state = ({
             "activeTab": '1',
-            "friendCounter": 3
+            "friendCounter": 1
         })
     }
 

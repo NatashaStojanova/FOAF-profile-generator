@@ -32,7 +32,7 @@ public class Person {
     private String title;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @Column(name = "friend_id")
     private List<Person> friends;
 

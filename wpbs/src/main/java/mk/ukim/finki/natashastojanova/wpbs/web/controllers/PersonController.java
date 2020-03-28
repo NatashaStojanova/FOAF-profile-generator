@@ -49,7 +49,7 @@ public class PersonController<RESTResource> {
 
     //add new person
     @RequestMapping(value = "/new_person", method = RequestMethod.POST, produces = "application/json")
-    public Person addPerson(@Valid @RequestBody Person person, HttpServletRequest request, HttpServletResponse response) {
+    public Person addPerson(@Valid @RequestBody Person person) {
         //check if the Person exists
         Optional<Person> optPerson = personService.findByEmail(person.getEmail());
         if (optPerson.isPresent()) {
@@ -70,22 +70,22 @@ public class PersonController<RESTResource> {
         return personService.save(person);
     }
 
-    //add new friends
     @PostMapping("/new_friends")
     public List<Person> addFriends(@Valid @RequestBody List<Person> friends, HttpServletRequest request, HttpServletResponse response) {
         Optional<Person> person = personService.findByEmail(friends.get(0).getEmail());
         List<Person> personFriends = new ArrayList<>();
         friends.remove(0);
         friends.forEach(friend -> {
-            Optional<Person> friendIter = personService.findByEmail(friend.getEmail());
-            if (friendIter.isPresent()) {
-                //if that friends already exists id database, then don't create new one,
-                //but connect the existing friend with this.(they are the same person)
-                personFriends.add(friendIter.get());
+            Optional<Person> friend1 = personService.findByEmail(friend.getEmail());
+            if (friend1.isPresent()) {
+                //ako postoi vo baza toj covek, togash ne treba da pravam nov tuku treba da go povrzam so Pwrson-ot
+                personFriends.add(friend1.get());
                 System.out.println(personFriends);
                 person.get().setFriends(personFriends);
+                personService.save(personFriends);
+
             } else {
-                //if that friends does not exist in database, then create him
+                //dokolku ne postoi->togash treba da se kreira vo bazata
                 personFriends.add(friend);
                 person.get().setFriends(personFriends);
                 personService.save(personFriends);
@@ -93,6 +93,7 @@ public class PersonController<RESTResource> {
         });
         return friends;
     }
+
 
     //add social networks
     @PostMapping("/new_soc_net")
@@ -159,18 +160,23 @@ public class PersonController<RESTResource> {
                 .addProperty(FOAF.currentProject, person.getWorkProfile().getCurrentProject())
                 .addProperty(FOAF.schoolHomepage, person.getWorkProfile().getSchoolHomepage())
                 .addProperty(FOAF.publications, person.getWorkProfile().getRecentPublication())
-                .addProperty(FOAF.based_near,person.getWorkProfile().getBasedNear())
+                .addProperty(FOAF.based_near, person.getWorkProfile().getBasedNear())
                 .addProperty(FOAF.skypeID, person.getSocialNetwork().getSkypeID())
                 .addProperty(FOAF.weblog, person.getSocialNetwork().getBlog())
                 .addProperty(FOAF.account, person.getSocialNetwork().getFacebookLink())
                 .addProperty(FOAF.account, person.getSocialNetwork().getLinkedIn())
                 .addProperty(FOAF.account, person.getSocialNetwork().getTwitterLink());
-        person.getFriends().forEach(friend -> {
-            personTurtle.addProperty(FOAF.knows, model.createResource(friend.getBaseURI(), FOAF.Person)
-                    .addProperty(FOAF.firstName, friend.getFirstName())
-                    .addProperty(FOAF.mbox_sha1sum, friend.getEmail()));
 
-        });
+        List personFriends = person.getFriends();
+        if (!personFriends.isEmpty()) {
+            person.getFriends().forEach(friend -> {
+                personTurtle.addProperty(FOAF.knows, model.createResource(friend.getBaseURI(), FOAF.Person)
+                        .addProperty(FOAF.firstName, friend.getFirstName())
+                        .addProperty(FOAF.mbox_sha1sum, friend.getEmail()));
+
+            });
+        }
+
 
         int length = 10;
         boolean useLetters = true;

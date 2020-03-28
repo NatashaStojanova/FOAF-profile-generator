@@ -49,6 +49,7 @@ class CreateProfile extends Component {
             workProf: newWorkProf,
             friends: newFriends,
             disable: true,
+            nameError: "",
         };
 
         this.setState({
@@ -125,15 +126,37 @@ class CreateProfile extends Component {
         })
 
     }
+    validate = () => {
 
+
+        if (this.state.person.baseURI && this.state.person.email) {
+            console.log("not blank!")
+            return true;
+        }
+        console.log("blank!")
+        console.log(this.state)
+        return false;
+    };
     personChange = ((target, value) => {
-        this.setState(prevState => {
-            let person = this.state.person;
-            person[target] = value;
-            return {
-                person: person
-            }
-        })
+            this.setState(prevState => {
+                let person = this.state.person;
+                person[target] = value;
+                    return {
+                        person: person,
+
+                    }
+
+            })
+
+        const isValid = this.validate();
+        if (isValid) {
+            console.log("VALIDNO POMINA");
+            this.setState({disable: false});
+        }
+        else{
+            console.log("IMAS USTE POLINJA ZA POPOLNUVANJE");
+        }
+
     });
 
     socNetChange = ((target, value) => {
@@ -157,10 +180,7 @@ class CreateProfile extends Component {
     });
 
     friendsChange = ((friendID, target, value) => {
-        if(value === ''){
-            this.setState({disable: true});
-        }
-        else {
+
             let id = friendID;
             this.setState(prevState => {
                 let friends = this.state.friends;
@@ -171,8 +191,8 @@ class CreateProfile extends Component {
                     friends: friends
                 }
             })
-            this.setState({disable: false});
-        }
+
+
     });
 
     render() {

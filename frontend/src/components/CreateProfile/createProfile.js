@@ -126,17 +126,38 @@ class CreateProfile extends Component {
         })
 
     }
-    validate = () => {
-
-
-        if (this.state.person.baseURI && this.state.person.email) {
-            console.log("not blank!")
+    validate = (id) => {
+        let idFriend = id;
+        console.log(this.state)
+        debugger;
+        if (!this.state.person.baseURI || !this.state.person.email) {
+            return false;
+        } else {
+            console.log("Person URI and mail NOT BLANK")
+            console.log(this.state)
+            if (this.state.friends.length === 0) {
+                console.log("FRIENDS LIST IS EMPTY")
+                console.log(this.state)
+                return true;
+            } else {
+                if (idFriend != undefined) {
+                    if (this.state.friends[idFriend].email && this.state.friends[idFriend].baseURI && this.state.friends[idFriend].firstName) {
+                        console.log("FRIEND MAIL,URI AND FIRSTNAME NOT BLANK")
+                        console.log(this.state)
+                        return true;
+                    } else {
+                        console.log("FRIEND MAIL,URI AND FIRSTNAME BLANK")
+                        console.log(this.state)
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
             return true;
         }
-        console.log("blank!")
-        console.log(this.state)
-        return false;
     };
+
     personChange = ((target, value) => {
             this.setState(prevState => {
                 let person = this.state.person;
@@ -155,6 +176,7 @@ class CreateProfile extends Component {
         }
         else{
             console.log("IMAS USTE POLINJA ZA POPOLNUVANJE");
+            this.setState({disable: true});
         }
 
     });
@@ -191,6 +213,15 @@ class CreateProfile extends Component {
                     friends: friends
                 }
             })
+
+        const isValid = this.validate(id);
+        if (isValid) {
+            console.log("VALIDNO POMINA");
+            this.setState({disable: false});
+        } else {
+            console.log("IMAS USTE POLINJA ZA POPOLNUVANJE");
+            this.setState({disable: true});
+        }
 
 
     });

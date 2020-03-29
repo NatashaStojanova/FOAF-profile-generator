@@ -75,22 +75,25 @@ public class PersonController<RESTResource> {
         Optional<Person> person = personService.findByEmail(friends.get(0).getEmail());
         List<Person> personFriends = new ArrayList<>();
         friends.remove(0);
-        friends.forEach(friend -> {
-            Optional<Person> friend1 = personService.findByEmail(friend.getEmail());
-            if (friend1.isPresent()) {
-                //ako postoi vo baza toj covek, togash ne treba da pravam nov tuku treba da go povrzam so Pwrson-ot
-                personFriends.add(friend1.get());
-                System.out.println(personFriends);
-                person.get().setFriends(personFriends);
-                personService.save(personFriends);
+        if(!friends.isEmpty()) {
+            friends.forEach(friend -> {
+                Optional<Person> friend1 = personService.findByEmail(friend.getEmail());
+                if (friend1.isPresent()) {
+                    //ako postoi vo baza toj covek, togash ne treba da pravam nov tuku treba da go povrzam so Pwrson-ot
+                    personFriends.add(friend1.get());
+                    System.out.println(personFriends);
+                    person.get().setFriends(personFriends);
+                    personService.save(personFriends);
 
-            } else {
-                //dokolku ne postoi->togash treba da se kreira vo bazata
-                personFriends.add(friend);
-                person.get().setFriends(personFriends);
-                personService.save(personFriends);
-            }
-        });
+
+                } else {
+                    //dokolku ne postoi->togash treba da se kreira vo bazata
+                    personFriends.add(friend);
+                    person.get().setFriends(personFriends);
+                    personService.save(personFriends);
+                }
+            });
+        }
         return friends;
     }
 
@@ -132,11 +135,6 @@ public class PersonController<RESTResource> {
 
     }
 
-    //show all persons
-    @GetMapping
-    public List<Person> getAllPersons() {
-        return personService.findAll();
-    }
 
     //generate new FOAF profile
     @RequestMapping(value = "/generate", method = RequestMethod.POST, produces = "application/json")

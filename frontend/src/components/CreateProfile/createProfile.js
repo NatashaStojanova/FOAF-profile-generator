@@ -4,8 +4,6 @@ import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import Intro from "./Intro/intro";
 import {Button} from "reactstrap";
-import Profile from "../Explorer/Profile/profile";
-import ShowProfile from "../Explorer/ShowProfile/showProfile";
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -129,7 +127,7 @@ class CreateProfile extends Component {
     validate = (id) => {
         console.log("we are here")
         console.log(this.state)
-        //debugger;
+        debugger;
         if (!this.state.person.baseURI || !this.state.person.email) {
             console.log("person inputs BLANK")
             console.log(this.state)

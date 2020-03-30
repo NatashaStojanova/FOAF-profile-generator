@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import Profile from "./Profile/profile";
 import PersonService from "../../service/personService";
 import {Button} from "reactstrap";
-import {Link} from 'react-router-dom';
 import ShowProfile from "./ShowProfile/showProfile";
 
 

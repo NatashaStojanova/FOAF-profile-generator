@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron, Navbar,} from 'reactstrap';
+import {Jumbotron} from 'reactstrap';
 
 
 const Home = (props) => {
@@ -9,7 +9,7 @@ const Home = (props) => {
                 <h1 className="display-3">FOAF generator</h1>
                 <img
                     src={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/FoafLogo.svg/1200px-FoafLogo.svg.png"}
-                    width={200}/>
+                    alt="foafLogo" width={200}/>
                 <h2 className="display-5">Here you can create, parse or explore your FOAF profile!</h2>
                 <br/>
                 <h3 className="display-5">What is FOAF?</h3>

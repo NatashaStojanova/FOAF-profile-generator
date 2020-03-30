@@ -197,7 +197,7 @@ public class PersonController<RESTResource> {
     public Profile addProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
         JSONObject json = new JSONObject(s);
         String profile = (String) json.get("yourProfile");
-        String fromFormat = (String) json.get("fromFormat");
+        String fromFormat = (String) json.get("inputFormat");
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;

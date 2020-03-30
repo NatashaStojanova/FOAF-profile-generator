@@ -2,8 +2,6 @@ import React,{Component} from 'react'
 import ProfileFormat from "./ProfileFormat/profileFormat.js";
 import PersonService from "../../service/personService";
 import {Button} from "reactstrap";
-import Profile from "../Explorer/Profile/profile";
-import ShowProfile from "../Explorer/ShowProfile/showProfile";
 
 class Parser extends Component{
 
@@ -12,8 +10,8 @@ class Parser extends Component{
 
         let newProfile = {
             yourProfile: null,
-            fromFormat: "RDF/XML",
-            toFormat: "TURTLE",
+            fromFormat: "",
+            toFormat: "",
         };
 
         this.state = {
@@ -50,20 +48,40 @@ class Parser extends Component{
         })
     }
 
+    validate = () => {
+        console.log(this.state)
+        //debugger;
+        if (!this.state.profile.yourProfile) {
+            console.log(this.state)
+            return false;
+        } else {
+            if (!this.state.profile.fromFormat || !this.state.profile.toFormat) {
+                return false;
+            }
+            console.log(this.state)
+            return true;
+        }
+    };
 
     profileChange = ((target, value) => {
-        if (value === '') {
-            this.setState({disable: true});
-        } else {
             this.setState(prevState => {
                 let profile = this.state.profile;
                 profile[target] = value;
                 return {
-                    profile: profile
+                    profile: profile,
                 }
-            })
-            this.setState({disable: false});
-        }
+            }, () => {
+                const isValid = this.validate();
+
+                if (isValid) {
+                    console.log("valid inputs");
+                    this.setState({disable: false});
+                } else {
+                    console.log("invalid inputs");
+                    this.setState({disable: true});
+                }
+            });
+
     });
 
     render() {

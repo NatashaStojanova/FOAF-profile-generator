@@ -152,7 +152,7 @@ class CreateProfile extends Component {
                         console.log("friend inputs ALL blank")
                         console.log(this.state)
                         this.state.friends.splice(id, 1);
-                        console.log("freiends deleted")
+                        console.log("freiend deleted")
                         return true;
                     }
                     return false;

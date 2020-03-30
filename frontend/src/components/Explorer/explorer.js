@@ -13,7 +13,7 @@ class Explorer extends Component{
 
         let newProfile = {
             yourProfile: null,
-            fromFormat: ".rdf",
+            inputFormat: "",
 
         };
 
@@ -55,22 +55,41 @@ class Explorer extends Component{
         })
     }
 
+    validate = () => {
+        console.log(this.state)
+        //debugger;
+        if (!this.state.profile.yourProfile || !this.state.profile.inputFormat) {
+            console.log(this.state)
+            return false;
+        } else {
+            console.log(this.state)
+            return true;
+        }
+    };
 
     profileChange = ((target, value) => {
-        if(value === ''){
-            this.setState({disable: true});
-        }
-        else {
+
         this.setState(prevState => {
             let profile = this.state.profile;
             profile[target] = value;
             return {
-                profile: profile
+                profile: profile,
             }
-        })
-        this.setState({disable: false});
-        }
+        }, () => {
+            const isValid = this.validate();
+
+            if (isValid) {
+                console.log("valid inputs");
+                this.setState({disable: false});
+            } else {
+                console.log("invalid inputs");
+                this.setState({disable: true});
+            }
+        });
+
+
     });
+
 
 
     render() {

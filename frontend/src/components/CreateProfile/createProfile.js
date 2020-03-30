@@ -127,57 +127,62 @@ class CreateProfile extends Component {
 
     }
     validate = (id) => {
-        let idFriend = id;
+        console.log("we are here")
         console.log(this.state)
-        debugger;
+        //debugger;
         if (!this.state.person.baseURI || !this.state.person.email) {
+            console.log("person inputs BLANK")
+            console.log(this.state)
             return false;
         } else {
-            console.log("Person URI and mail NOT BLANK")
+            console.log("person inputs not blank")
             console.log(this.state)
             if (this.state.friends.length === 0) {
-                console.log("FRIENDS LIST IS EMPTY")
-                console.log(this.state)
+                console.log("No friends")
                 return true;
             } else {
-                if (idFriend != undefined) {
-                    if (this.state.friends[idFriend].email && this.state.friends[idFriend].baseURI && this.state.friends[idFriend].firstName) {
-                        console.log("FRIEND MAIL,URI AND FIRSTNAME NOT BLANK")
-                        console.log(this.state)
-                        return true;
-                    } else {
-                        console.log("FRIEND MAIL,URI AND FIRSTNAME BLANK")
-                        console.log(this.state)
-                        return false;
-                    }
+                console.log("Check friends inputs")
+                if (id === undefined) {
+                    return true;
                 } else {
+                    if (this.state.friends[id].firstName && this.state.friends[id].email && this.state.friends[id].baseURI) {
+                        console.log("friend inputs not blank")
+                        return true;
+                    } else if (!this.state.friends[id].firstName && !this.state.friends[id].email && !this.state.friends[id].baseURI) {
+                        console.log("friend inputs ALL blank")
+                        console.log(this.state)
+                        this.state.friends.splice(id, 1);
+                        console.log("freiends deleted")
+                        return true;
+                    }
                     return false;
                 }
             }
+
             return true;
         }
     };
 
     personChange = ((target, value) => {
-            this.setState(prevState => {
-                let person = this.state.person;
-                person[target] = value;
-                    return {
-                        person: person,
+        this.setState(prevState => {
+            let person = this.state.person;
+            person[target] = value;
 
-                    }
+            return {
+                person: person,
+            }
+        }, () => {
+            const isValid = this.validate();
 
-            })
+            if (isValid) {
+                console.log("valid inputs");
+                this.setState({disable: false});
+            } else {
+                console.log("invalid inputs");
+                this.setState({disable: true});
+            }
+        });
 
-        const isValid = this.validate();
-        if (isValid) {
-            console.log("VALIDNO POMINA");
-            this.setState({disable: false});
-        }
-        else{
-            console.log("IMAS USTE POLINJA ZA POPOLNUVANJE");
-            this.setState({disable: true});
-        }
 
     });
 
@@ -212,16 +217,17 @@ class CreateProfile extends Component {
                 return {
                     friends: friends
                 }
-            })
+            }, () => {
+                const isValid = this.validate(id);
 
-        const isValid = this.validate(id);
-        if (isValid) {
-            console.log("VALIDNO POMINA");
-            this.setState({disable: false});
-        } else {
-            console.log("IMAS USTE POLINJA ZA POPOLNUVANJE");
-            this.setState({disable: true});
-        }
+                if (isValid) {
+                    console.log("valid inputs");
+                    this.setState({disable: false});
+                } else {
+                    console.log("invalid inputs");
+                    this.setState({disable: true});
+                }
+            });
 
 
     });

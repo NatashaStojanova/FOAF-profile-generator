@@ -96,7 +96,7 @@ class CreateProfile extends Component {
                         //alert("Successfully added person");
                         PersonService.generateProfile(newPerson).then(personResp => {
                             document.getElementById("foafProfile").style.border = "thin solid #d3d3d3";
-                            document.getElementById("foafProfile").innerText = personResp.data;
+                            document.getElementById("foafProfile").innerHTML = personResp.data;
                             //alert("Successfully created Profile")
                         }).catch(error => {
                             alert("GENERATE")
@@ -131,9 +131,6 @@ class CreateProfile extends Component {
 
     }
     validate = (id) => {
-        console.log("we are here")
-        console.log(this.state)
-        debugger;
         if (!this.state.person.baseURI || !this.state.person.email) {
             console.log("person inputs BLANK")
             console.log(this.state)
@@ -268,9 +265,11 @@ class CreateProfile extends Component {
                              onSocNetChange={this.socNetChange}/>
                         <div className="form-group">
                             <h3>Your profile:</h3>
-                            <div align="left" id="foafProfile" style={{background: "white"}}>
-
-                            </div>
+                            <textarea
+                                className="form-control"
+                                id="foafProfile"
+                                rows="20"
+                            />
                         </div>
 
                     </div>)}

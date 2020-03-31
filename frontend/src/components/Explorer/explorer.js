@@ -56,7 +56,6 @@ class Explorer extends Component{
 
     validate = () => {
         console.log(this.state)
-        //debugger;
         if (!this.state.profile.yourProfile || !this.state.profile.inputFormat) {
             console.log(this.state)
             return false;

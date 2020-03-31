@@ -38,7 +38,7 @@ class Parser extends Component{
         });
         PersonService.parseProfile(this.state.profile).then(profileResp => {
             document.getElementById("parserProfile").style.border = "thin solid #d3d3d3";
-            document.getElementById("parserProfile").innerText = profileResp.data
+            document.getElementById("parserProfile").innerHTML = profileResp.data
             //alert("PROFILE PARSED");
         }).catch(error => {
             console.log(error.data)
@@ -113,9 +113,12 @@ class Parser extends Component{
                         <Button type="button" className="btn btn-info" disabled={this.state.disable}
                                 onClick={this.parseFOAFProfile}>Parse profile</Button>
                         <br/>
-                        <div id="parserProfile" align="left">
-                            <br/>
-                            <br/>
+                        <div className="form-group">
+                            <textarea
+                                className="form-control"
+                                id="parserProfile"
+                                rows="20"
+                            />
                         </div>
                     </div>)}
 

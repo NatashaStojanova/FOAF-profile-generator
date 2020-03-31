@@ -103,7 +103,7 @@ class Explorer extends Component{
                             <h3 className="text-danger">
                                 An error occured
                             </h3>
-                            <p>Probably you did not input the data or didn't choose the correct input format</p>
+                            <p>Seems like your data format is invalid or you didn't choose the correct input format</p>
                             <br/>
                             <a href="FOAF-explorer"
                                className="btn btn-primary text-upper">

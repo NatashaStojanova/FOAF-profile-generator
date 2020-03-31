@@ -243,7 +243,7 @@ class CreateProfile extends Component {
                             <h3 className="text-danger">
                                 An error occured
                             </h3>
-                            <p>Please notice that your email and base URI can't be blank, either your friends </p>
+                            <p>Only well-formed absolute URI refs can be included in RDF/XML. Try again!</p>
                             <br/>
                             <a href="/create"
                                className="btn btn-primary text-upper">

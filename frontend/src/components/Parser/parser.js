@@ -97,8 +97,8 @@ class Parser extends Component{
                             <h3 className="text-danger">
                                 An error occured
                             </h3>
-                            <p>Input data was not in a correct format or you didn't select the correct input/output
-                                format.</p>
+                            <p>Seems like your data format is invalid or you didn't choose the correct input/output
+                                format</p>
                             <br/>
                             <a href="FOAF-translator"
                                className="btn btn-primary text-upper">

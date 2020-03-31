@@ -32,6 +32,11 @@ select {
   color: #282c34;
 }
 
+textarea {
+
+  white-space: pre-wrap;
+}
+
 label {
 
   font-family: "Raleway", serif;

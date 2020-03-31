@@ -5,6 +5,7 @@ class ShowProfile extends Component {
     render() {
         return (
             <div className="container">
+                <br/>
                 <h5><b>Person Base URI:</b> <a
                     href={this.props.value.baseURI}>{this.props.value.baseURI}</a> {/*<img src={this.state.profileFOAF.image} alt='profilePhoto' width={150}></img>*/}
                 </h5>

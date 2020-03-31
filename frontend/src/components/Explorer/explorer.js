@@ -39,7 +39,7 @@ class Explorer extends Component{
             "errorMessage": null,
         });
         PersonService.addProfile(this.state.profile).then(profileResp => {
-            document.getElementById("profileData").style.border = "thin solid #d3d3d3";
+            /*document.getElementById("profileData").style.border = "thin solid #d3d3d3";*/
             document.getElementById("profileData").style.visibility = "visible";
             this.setState({
                 profileFOAF: profileResp.data,

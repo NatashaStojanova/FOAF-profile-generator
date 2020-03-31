@@ -78,6 +78,10 @@ class Tab extends Component {
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
                         <Row>
+                            <div align="left">
+                                <br/>
+                                <h3>Friends I know</h3><br/>
+                            </div>
                             <Col lg="12">
                                 {this.mapFriends()}
                             </Col>
@@ -86,6 +90,10 @@ class Tab extends Component {
                     </TabPane>
                     <TabPane tabId="2">
                         <Row>
+                            <div align="left">
+                                <br/>
+                                <h3>Social Networking</h3><br/>
+                            </div>
                             <Col lg="12">
                                 <SocialNetwork onSocNetChange={this.props.onSocNetChange}/>
                             </Col>
@@ -93,6 +101,10 @@ class Tab extends Component {
                     </TabPane>
                     <TabPane tabId="3">
                         <Row>
+                            <div align="left">
+                                <br/>
+                                <h3>Work profile</h3><br/>
+                            </div>
                             <Col lg="12">
                                 <WorkProfile onWorkProfChange={this.props.onWorkProfChange}/>
                             </Col>

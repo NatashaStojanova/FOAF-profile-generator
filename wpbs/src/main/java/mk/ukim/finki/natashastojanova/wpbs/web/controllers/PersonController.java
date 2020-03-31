@@ -10,7 +10,6 @@ import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.util.FileManager;
 import org.springframework.boot.configurationprocessor.json.JSONException;

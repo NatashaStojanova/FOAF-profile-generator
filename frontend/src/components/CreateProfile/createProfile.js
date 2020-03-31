@@ -4,6 +4,12 @@ import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import Intro from "./Intro/intro";
 import {Button} from "reactstrap";
+import {AvFeedback, AvForm, AvGroup, AvInput} from "availity-reactstrap-validation";
+import {TextareaAutosize} from "@material-ui/core";
+import FormGroup from "@material-ui/core/FormGroup";
+import Input from "@material-ui/core/Input";
+import Label from "reactstrap/es/Label";
+
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -260,8 +266,13 @@ class CreateProfile extends Component {
                                 onClick={this.savePerson}>FOAF me</Button>
                         <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                              onSocNetChange={this.socNetChange}/>
-                        <div align="left" id="foafProfile"><br/>
+                        <div className="form-group">
+                            <h3>Your profile:</h3>
+                            <div align="left" id="foafProfile" style={{background: "white"}}>
+
+                            </div>
                         </div>
+
                     </div>)}
 
                 </div>

@@ -10,6 +10,7 @@ import mk.ukim.finki.natashastojanova.wpbs.service.PersonService;
 import mk.ukim.finki.natashastojanova.wpbs.service.SocialNetworkService;
 import mk.ukim.finki.natashastojanova.wpbs.service.WorkProfileService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.util.FileManager;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -17,6 +18,7 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -245,30 +247,39 @@ public class PersonController<RESTResource> {
         p.setWorkHomepage(workHomepage);
         String basedNear = r.getProperty(FOAF.based_near).getString();
         p.setBasedNear(basedNear);
-       /* String facebookLink = r.getProperty(FOAF.account).getString();
-        p.setFacebookLink(facebookLink);
-        String linkedInLink = r.getProperty(FOAF.account).getString();
-        p.setLinkedInLink(linkedInLink);
-        String twitterLink = r.getProperty(FOAF.account).getString();
-        p.setTwitterLink(twitterLink);*/
-        for (int i = 0; i < 4; i++) {
+
+        int counter = 0;
+        NodeIterator nodIter = model.listObjectsOfProperty(FOAF.account);
+        while (nodIter.hasNext()) {
+            counter++;
+            nodIter.nextNode();
+        }
+
+        for (int i = 0; i < counter; i++) {
             String iterLinks = r.getProperty(FOAF.account).getString();
-            if (iterLinks.contains("facebook")) {
-                p.setFacebookLink(iterLinks);
+
+            if (iterLinks.length() > 1) {
+                if (iterLinks.contains("facebook")) {
+                    p.setFacebookLink(iterLinks);
+                    r.getProperty(FOAF.account).remove();
+                    continue;
+                } else if (iterLinks.contains("linkedin")) {
+                    p.setLinkedInLink(iterLinks);
+                    r.getProperty(FOAF.account).remove();
+                    continue;
+                } else if (iterLinks.contains("twitter")) {
+                    p.setTwitterLink(iterLinks);
+                    r.getProperty(FOAF.account).remove();
+                    continue;
+                } else
+                    p.setBaseURI(iterLinks);
                 r.getProperty(FOAF.account).remove();
                 continue;
-            } else if (iterLinks.contains("linkedin")) {
-                p.setLinkedInLink(iterLinks);
+            } else {
                 r.getProperty(FOAF.account).remove();
                 continue;
-            } else if (iterLinks.contains("twitter")) {
-                p.setTwitterLink(iterLinks);
-                r.getProperty(FOAF.account).remove();
-                continue;
-            } else
-                p.setBaseURI(iterLinks);
-            r.getProperty(FOAF.account).remove();
-            continue;
+            }
+
         }
         String skypeID = r.getProperty(FOAF.skypeID).getString();
         p.setSkypeID(skypeID);

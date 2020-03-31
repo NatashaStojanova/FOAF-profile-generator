@@ -299,8 +299,7 @@ public class PersonController<RESTResource> {
     }
 
     @RequestMapping(value = "/parse", method = RequestMethod.POST, produces = "application/json")
-    public FileSystemResource parseProfile(@Valid @RequestBody String s, HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
-        System.out.print(s);
+    public FileSystemResource parseProfile(@Valid @RequestBody String s) throws IOException, JSONException {
         JSONObject json = new JSONObject(s);
         String profile = (String) json.get("yourProfile");
         String fromFormat = (String) json.get("fromFormat");

@@ -247,39 +247,41 @@ public class PersonController<RESTResource> {
         String basedNear = r.getProperty(FOAF.based_near).getString();
         p.setBasedNear(basedNear);
 
-        int counter = 0;
+
         NodeIterator nodIter = model.listObjectsOfProperty(FOAF.account);
         while (nodIter.hasNext()) {
-            counter++;
-            nodIter.nextNode();
-        }
-
-        for (int i = 0; i < counter; i++) {
             String iterLinks = r.getProperty(FOAF.account).getString();
-
             if (iterLinks.length() > 1) {
                 if (iterLinks.contains("facebook")) {
                     p.setFacebookLink(iterLinks);
                     r.getProperty(FOAF.account).remove();
+                    nodIter.nextNode();
                     continue;
                 } else if (iterLinks.contains("linkedin")) {
                     p.setLinkedInLink(iterLinks);
                     r.getProperty(FOAF.account).remove();
+                    nodIter.nextNode();
                     continue;
                 } else if (iterLinks.contains("twitter")) {
                     p.setTwitterLink(iterLinks);
                     r.getProperty(FOAF.account).remove();
+                    nodIter.nextNode();
                     continue;
                 } else
                     p.setBaseURI(iterLinks);
                 r.getProperty(FOAF.account).remove();
+                nodIter.nextNode();
                 continue;
             } else {
                 r.getProperty(FOAF.account).remove();
+                nodIter.nextNode();
                 continue;
             }
 
+
         }
+
+
         String skypeID = r.getProperty(FOAF.skypeID).getString();
         p.setSkypeID(skypeID);
 

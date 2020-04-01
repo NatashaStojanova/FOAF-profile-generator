@@ -42,7 +42,7 @@ class Tab extends Component {
     render() {
         return (
             <div>
-                <br/>
+                <br/><br/>
                 <Nav tabs>
                     <NavItem>
                         <NavLink
@@ -51,7 +51,7 @@ class Tab extends Component {
                                 this.toggle('1');
                             }}
                         >
-                            <p className="text-info">Friends</p>
+                            <h5 className="text-info">Friends</h5>
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -61,7 +61,7 @@ class Tab extends Component {
                                 this.toggle('2');
                             }}
                         >
-                            <p className="text-info">Social Network</p>
+                            <h5 className="text-info">Social Network</h5>
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -71,7 +71,7 @@ class Tab extends Component {
                                 this.toggle('3');
                             }}
                         >
-                            <p className="text-info">Work Profile</p>
+                            <h5 className="text-info">Work Profile</h5>
                         </NavLink>
                     </NavItem>
                 </Nav>

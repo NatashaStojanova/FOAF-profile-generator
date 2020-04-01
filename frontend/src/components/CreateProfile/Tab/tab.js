@@ -80,8 +80,8 @@ class Tab extends Component {
                         <Row>
                             <Col lg="12">
                                 {this.mapFriends()}
+                                <button className="btn btn-info" onClick={this.addFriend}>Add Friend</button>
                             </Col>
-                            <button className="btn btn-info" onClick={this.addFriend}>+ Friend</button>
                         </Row>
                     </TabPane>
                     <TabPane tabId="2">

@@ -1,5 +1,4 @@
 import React from "react";
-import {MDBContainer, MDBFooter} from "mdbreact";
 
 const FooterPage = () => {
     return (

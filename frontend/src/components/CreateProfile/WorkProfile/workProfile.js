@@ -1,6 +1,4 @@
 import React from 'react';
-import {Form, FormGroup, Label, Input} from 'reactstrap';
-import Col from "react-bootstrap/Col";
 
 const WorkProfile = (props) => {
 

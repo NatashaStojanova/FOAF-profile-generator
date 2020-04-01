@@ -50,9 +50,10 @@ class ShowProfile extends Component {
                                                                             <br/><br/>
                                                                             <div align="left">
                                                                                     <i className="fas fa-envelope"></i>
-                                                                                    <a>kok@gmaki.com</a><br/>
+                                                                                    <p>kok@gmaki.com</p><br/>
                                                                                     <i className="fab fa-skype"></i>
-                                                                                    <a>{this.props.value.skypeID}</a><br/>
+                                                                                    <p>{this.props.value.skypeID}</p>
+                                                                                    <br/>
                                                                                     <i className="fab fa-linkedin"></i>
                                                                                     <a
                                                                                         href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a><br/>
@@ -60,8 +61,9 @@ class ShowProfile extends Component {
                                                                                     <a
                                                                                         href={this.props.value.facebookLink}>{this.props.value.facebookLink}</a><br/>
                                                                                     <i className="fab fa-twitter"></i>
-                                                                                    <a
-                                                                                        href={this.props.value.twitterLink}>{this.props.value.twitterLink}</a><br/>
+                                                                                    <p
+                                                                                        href={this.props.value.twitterLink}>{this.props.value.twitterLink}</p>
+                                                                                    <br/>
                                                                                     <i className="fas fa-graduation-cap"></i>
                                                                                     <a
                                                                                         href={this.props.value.schoolHomepage}>{this.props.value.schoolHomepage}</a><br/>
@@ -69,7 +71,7 @@ class ShowProfile extends Component {
                                                                                     <a
                                                                                         href={this.props.value.workHomepage}>{this.props.value.workHomepage}</a><br/>
                                                                                     <i className="fas fa-map-marker-alt"></i>
-                                                                                    <a>{this.props.value.basedNear}</a>
+                                                                                    <p>{this.props.value.basedNear}</p>
                                                                             </div>
                                                                     </div>
 

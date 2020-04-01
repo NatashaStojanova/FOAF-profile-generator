@@ -4,12 +4,6 @@ import Person from "./Person/person.js"
 import Tab from "./Tab/tab"
 import Intro from "./Intro/intro";
 import {Button} from "reactstrap";
-import {AvFeedback, AvForm, AvGroup, AvInput} from "availity-reactstrap-validation";
-import {TextareaAutosize} from "@material-ui/core";
-import FormGroup from "@material-ui/core/FormGroup";
-import Input from "@material-ui/core/Input";
-import Label from "reactstrap/es/Label";
-
 
 class CreateProfile extends Component {
     constructor(props) {

@@ -4,77 +4,83 @@ class ShowProfile extends Component {
 
     render() {
         return (
-            <div className="container">
-                <br/>
-                <h5><b>Person Base URI:</b> <a
-                    href={this.props.value.baseURI}>{this.props.value.baseURI}</a> {/*<img src={this.state.profileFOAF.image} alt='profilePhoto' width={150}></img>*/}
-                </h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b>First name:</b> {this.props.value.name}</h5> <br/>
-                <hr/>
-                <br/>
-                <h5><b>Last name:</b> {this.props.value.surname}</h5> <br/>
-                <hr/>
-                <br/>
-                <h5><b>Nickname:</b>{this.props.value.nick}</h5> <br/>
-                <hr/>
-                <br/>
-                <h5><b>{this.props.value.name} knows:</b></h5>
-                {this.props.valueFriends.map((friend, index) => {
-                    return (
-                        <h5 key={index}><b>Name:</b> {friend.name}<br/>
-                            <b>E-mail</b>: {friend.email}<br/><br/></h5>
+            <div>
+                    <div className="container">
+                            <div className="row">
+                                    <div className="col-lg-20">
+                                            <div className="card">
+                                                    <div className="card-body">
+                                                            <div className="row">
+                                                                    <div className="col-12 col-lg-8 col-md-6">
+                                                                            <h3 className="mb-0 text-truncated"><a
+                                                                                href={this.props.value.baseURI}>{this.props.value.baseURI}</a>
+                                                                            </h3>
+                                                                            <div align="left">
+                                                                                    <br/>
+                                                                                    <p className="lead">First
+                                                                                            name: {this.props.value.name}</p>
+                                                                                    <p className="lead">Last
+                                                                                            name: {this.props.value.surname}</p>
+                                                                                    <p className="lead">Nickname: {this.props.value.nick}</p>
+                                                                                    <p className="lead">Title: {this.props.value.title}</p>
+                                                                                    <p className="lead">Homepage: <a
+                                                                                        href={this.props.value.homepage}>{this.props.value.homepage}</a>
+                                                                                    </p>
+                                                                                    <p className="lead">Current
+                                                                                            Project: {this.props.value.currentProject}</p>
+                                                                                    <p className="lead">Recent
+                                                                                            publication: {this.props.value.recentPublication}</p>
+                                                                                    <p className="lead">Knows: {this.props.valueFriends.map((friend, index) => {
+                                                                                            return (
+                                                                                                <p key={index}><i
+                                                                                                    className="fas fa-user-friends"></i> {friend.name}<br/>
+                                                                                                        <i className="fas fa-envelope"></i> {friend.email}<br/><br/>
+                                                                                                </p>
 
-                    )
-                })} <br/>
-                <hr/>
-                <br/>
-                <h5><b>Title: </b>{this.props.value.title}</h5><br/>
-                <hr/>
-                <br/>
-                <h5><b>Homepage: </b><a href={this.props.value.homepage}>{this.props.value.homepage}</a>
-                </h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b> Facebook Link: </b><a
-                    href={this.props.value.facebookLink}>{this.props.value.facebookLink}</a></h5> <br/>
-                <hr/>
-                <br/>
-                <h5><b>Twitter Link:</b> <a
-                    href={this.props.value.twitterLink}>{this.props.value.twitterLink}</a></h5><br/>
-                <hr/>
-                <br/>
-                <h5><b> LinkedIn Link:</b> <a
-                    href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a></h5><br/>
-                <hr/>
-                <br/>
-                <h5><b> Blog link:</b> <a
-                    href={this.props.value.blogLink}>{this.props.value.blogLink}</a></h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b> Skype ID:</b> {this.props.value.skypeID}</h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b>Current project: </b>{this.props.value.currentProject}</h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b>Recent publication: </b>{this.props.value.recentPublication}</h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b>Work homepage:</b> {this.props.value.workHomepage}</h5>
-                <br/>
-                <hr/>
-                <br/>
-                <h5><b> Based Near:</b> {this.props.value.basedNear}</h5><br/>
+                                                                                            )
+                                                                                    })} <br/></p>
+
+                                                                            </div>
+
+                                                                    </div>
+                                                                    <div
+                                                                        className="col-12 col-lg-4 col-md-6 text-center">
+                                                                            <img src={this.props.value.image} alt=""
+                                                                                 className="mx-auto rounded-circle img-fluid"/>
+                                                                            <br/><br/>
+                                                                            <div align="left">
+                                                                                    <i className="fas fa-envelope"></i>
+                                                                                    <a>kok@gmaki.com</a><br/>
+                                                                                    <i className="fab fa-skype"></i>
+                                                                                    <a>{this.props.value.skypeID}</a><br/>
+                                                                                    <i className="fab fa-linkedin"></i>
+                                                                                    <a
+                                                                                        href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a><br/>
+                                                                                    <i className="fab fa-facebook-f"></i>
+                                                                                    <a
+                                                                                        href={this.props.value.facebookLink}>{this.props.value.facebookLink}</a><br/>
+                                                                                    <i className="fab fa-twitter"></i>
+                                                                                    <a
+                                                                                        href={this.props.value.twitterLink}>{this.props.value.twitterLink}</a><br/>
+                                                                                    <i className="fas fa-graduation-cap"></i>
+                                                                                    <a
+                                                                                        href={this.props.value.schoolHomepage}>{this.props.value.schoolHomepage}</a><br/>
+                                                                                    <i className="fas fa-briefcase"></i>
+                                                                                    <a
+                                                                                        href={this.props.value.workHomepage}>{this.props.value.workHomepage}</a><br/>
+                                                                                    <i className="fas fa-map-marker-alt"></i>
+                                                                                    <a>{this.props.value.basedNear}</a>
+                                                                            </div>
+                                                                    </div>
+
+
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
             </div>
-
         )
     }
 }

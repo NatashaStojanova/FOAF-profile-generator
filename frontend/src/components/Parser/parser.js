@@ -112,10 +112,11 @@ class Parser extends Component{
                     </div> : <div><ProfileFormat onProfileChange={this.profileChange}/>
                         <Button type="button" className="btn btn-info" disabled={this.state.disable}
                                 onClick={this.parseFOAFProfile}>Parse profile</Button>
-                        <br/>
+                        <br/> <br/>
                         <div className="form-group">
                             <textarea
                                 className="form-control"
+                                placeholder="Your output"
                                 id="parserProfile"
                                 rows="20"
                             />

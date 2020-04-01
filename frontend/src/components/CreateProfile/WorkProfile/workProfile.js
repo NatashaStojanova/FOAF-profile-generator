@@ -11,50 +11,48 @@ const WorkProfile = (props) => {
 
     return (
 
-        <Form>
-
-            <FormGroup row className="mb-2 mr-sm-2  mb-lg-2">
-                <Label for="currentProject" className="mr-sm-4">Current Project:</Label>
-                <Col sm={5}>
-                    <Input type="text" name="currentProject" id="currentProject"
-                           placeholder="Current project you are working on..." onChange={onWorkProfChange}/>
-                </Col>
-            </FormGroup>
-
-            <FormGroup row className="mb-2 mr-sm-2  mb-lg-2">
-                <Label for="recentPublication" className="mr-sm-1">Recent Publication:</Label>
-                <Col sm={5}>
-                    <Input type="text" name="recentPublication" id="recentPublication"
-                           placeholder="Name your recent publication..." onChange={onWorkProfChange}/>
-                </Col>
-            </FormGroup>
-
-            <FormGroup row className="mb-2 mr-sm-2  mb-lg-2">
-                <Label for="schoolHomepage" className="mr-sm">School Homepage:</Label>
-                <Col sm={5}>
-                    <Input type="text" name="schoolHomepage" id="schoolHomepage" placeholder="Your School homepage..."
+        <div align="left">
+            <div className="form-group row">
+                <label htmlFor="currentProject" className="col-sm-2 col-form-label">Current Project</label>
+                <div className="col-sm-4">
+                    <input type="text" className="form-control" name="currentProject" id="currentProject"
                            onChange={onWorkProfChange}/>
-                </Col>
-            </FormGroup>
+                </div>
+            </div>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-lg-2">
-                <Label for="workHomepage" className="mr-sm-2">Work Homepage:</Label>
-                <Col sm={5}>
-                    <Input type="text" name="workHomepage" id="workHomepage" placeholder="Your work homepage..."
+            <div className="form-group row">
+                <label htmlFor="recentPublication" className="col-sm-2 col-form-label">Recent Publication</label>
+                <div className="col-sm-4">
+                    <input type="text" className="form-control" name="recentPublication" id="recentPublication"
                            onChange={onWorkProfChange}/>
-                </Col>
-            </FormGroup>
+                </div>
+            </div>
 
-            <FormGroup row className="mb-2 mr-sm-2  mb-lg-0">
-                <Label for="basedNear" className="mr-sm-5">Based Near:</Label>
-                <Col sm={5}>
-                    <Input type="text" name="basedNear" id="basedNear" placeholder="Based near..."
+            <div className="form-group row">
+                <label htmlFor="schoolHomepage" className="col-sm-2 col-form-label">School homepage:</label>
+                <div className="col-sm-4">
+                    <input type="url" className="form-control" name="schoolHomepage" id="schoolHomepage"
+                           placeholder="https://" onChange={onWorkProfChange}/>
+                </div>
+            </div>
+
+            <div className="form-group row">
+                <label htmlFor="workHomepage" className="col-sm-2 col-form-label">Work homepage:</label>
+                <div className="col-sm-4">
+                    <input type="url" className="form-control" name="workHomepage" id="workHomepage"
+                           placeholder="https://" onChange={onWorkProfChange}/>
+                </div>
+            </div>
+
+            <div className="form-group row">
+                <label htmlFor="basedNear" className="col-sm-2 col-form-label">Based near:</label>
+                <div className="col-sm-4">
+                    <input type="text" className="form-control" name="basedNear" id="basedNear"
                            onChange={onWorkProfChange}/>
-                </Col>
-            </FormGroup>
+                </div>
+            </div>
 
-
-        </Form>
+        </div>
 
     );
 }

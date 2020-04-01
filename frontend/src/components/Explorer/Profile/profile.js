@@ -25,9 +25,10 @@ const Profile = (props) => {
             <AvGroup className="mb-2 mr-lg-5 mb-sm-2">
                 <AvForm inline>
                     <Label for="inputFormat" className="mr-sm-2">Input Format:</Label>
-                    <AvInput type="select" name="inputFormat" id="inputFormat" style={{weight: "20"}}
+                    <AvInput className="custom-select" type="select" name="inputFormat" id="inputFormat"
+                             style={{weight: "20"}}
                              onChange={onProfileChange}>
-                        <option value="">---choose input format---</option>
+                        <option value="">Choose....</option>
                         <option value=".rdf">RDF/XML</option>
                         <option value=".ttl">TURTLE</option>
                         <option value=".n3">N3</option>

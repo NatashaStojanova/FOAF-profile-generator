@@ -263,10 +263,11 @@ class CreateProfile extends Component {
                                 onClick={this.savePerson}>FOAF me</Button>
                         <Tab onFriendChange={this.friendsChange} onWorkProfChange={this.workProfChange}
                              onSocNetChange={this.socNetChange}/>
+                        <br/>
                         <div className="form-group">
-                            <h3>Your profile:</h3>
                             <textarea
                                 className="form-control"
+                                placeholder="Output"
                                 id="foafProfile"
                                 rows="20"
                             />

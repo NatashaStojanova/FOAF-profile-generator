@@ -30,10 +30,10 @@ const ProfileFormat = (props) => {
                 <AvForm inline className="flex-center">
                     <AvGroup className="mb-2 mr-lg-5 mb-sm-2">
                         <Label for="fromFormat" className="mr-sm-2">Input Format:</Label>
-                        <AvInput type="select" name="fromFormat" id="fromFormat"
+                        <AvInput type="select" className="custom-select" name="fromFormat" id="fromFormat"
                                  style={{weight: "150px"}}
                                  onChange={onProfileChange}>
-                            <option value="">-----</option>
+                            <option value="">Choose</option>
                             <option value="RDF/XML">RDF/XML</option>
                         <option value="TURTLE">TURTLE</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>
@@ -45,9 +45,9 @@ const ProfileFormat = (props) => {
                     </AvGroup>
                     <AvGroup className="mb-0 mr-lg-5 mb-sm-2">
                         <Label for="toFormat" className="mr-sm-2">Output Format:</Label>
-                        <AvInput type="select" name="toFormat" id="toFormat"
+                        <AvInput type="select" className="custom-select" name="toFormat" id="toFormat"
                                  onChange={onProfileChange}>
-                            <option value="">-----</option>
+                            <option value="">Choose</option>
                         <option value="TURTLE">TURTLE</option>
                         <option value="RDF/XML">RDF/XML</option>
                         <option value="RDF/XML-ABBREV">RDF/XML-ABBREV</option>

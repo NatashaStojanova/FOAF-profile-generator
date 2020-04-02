@@ -22,27 +22,35 @@ class Friend extends Component {
 
     render() {
         return (
-            <div>
-                <Form inline>
-                    <FormGroup className="mb-2 mr-sm-1 mb-lg-2">
-                        <Label for="firstName" className="mr-sm-2">First Name (Given)</Label>
-                        <Input type="text" name="firstName" id="firstName" placeholder="First Name"
-                               onChange={this.onFriendChange}/>
-                    </FormGroup>
+            <div className="container">
+                <form>
+                    <div className="form-row">
+                        <div className="form-group row col-sm-4">
+                            <label htmlFor="firstName" className="col-sm-4 col-form-label">First Name:</label>
+                            <div className="col-md-8">
+                                <input type="text" className="form-control" name="firstName" id="firstName"
+                                       placeholder="Given Name" onChange={this.onFriendChange}/>
+                            </div>
+                        </div>
 
-                    <FormGroup className="mb-2 mr-sm-2  mb-lg-2">
-                        <Label for="email" className="mr-sm-2">Email</Label>
-                        <Input type="email" name="email" id="email" placeholder="example@address.com"
-                               onChange={this.onFriendChange}/>
-                    </FormGroup>
+                        <div className="form-group row col-sm-4" align="right">
+                            <label htmlFor="email" className="col-sm-4 col-form-label">E-mail:</label>
+                            <div className="col-md-8">
+                                <input type="email" className="form-control" name="email" id="email"
+                                       placeholder="example@mail" onChange={this.onFriendChange}/>
+                            </div>
+                        </div>
 
-                    <FormGroup className="mb-2 mr-sm-2  mb-lg-2">
-                        <Label for="baseURI" className="mr-sm-2">Base URI</Label>
-                        <Input type="url" name="baseURI" id="baseURI" placeholder="http://"
-                               onChange={this.onFriendChange}/>
-                    </FormGroup>
+                        <div className="form-group row col-sm-4">
+                            <label htmlFor="baseURI" className="col-sm-3 col-form-label">URI:</label>
+                            <div className="col-md-8">
+                                <input type="url" className="form-control" name="baseURI" id="baseURI"
+                                       placeholder="https://" onChange={this.onFriendChange}/>
+                            </div>
+                        </div>
+                    </div>
 
-                </Form>
+                </form>
             </div>
         );
     };

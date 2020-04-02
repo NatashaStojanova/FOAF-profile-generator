@@ -49,29 +49,24 @@ class ShowProfile extends Component {
                                                                                  className="mx-auto rounded-circle img-fluid"/>
                                                                             <br/><br/>
                                                                             <div align="left">
-                                                                                    <i className="fas fa-envelope"></i>
-                                                                                    <p>kok@gmaki.com</p><br/>
-                                                                                    <i className="fab fa-skype"></i>
-                                                                                    <p>{this.props.value.skypeID}</p>
+                                                                                <i className="fas fa-envelope"></i>
+                                                                                <a>{this.props.value.email}</a><br/>
+                                                                                <i className="fab fa-skype"></i>
+                                                                                <a>{this.props.value.skypeID}</a>
                                                                                     <br/>
-                                                                                    <i className="fab fa-linkedin"></i>
-                                                                                    <a
-                                                                                        href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a><br/>
-                                                                                    <i className="fab fa-facebook-f"></i>
-                                                                                    <a
-                                                                                        href={this.props.value.facebookLink}>{this.props.value.facebookLink}</a><br/>
-                                                                                    <i className="fab fa-twitter"></i>
-                                                                                    <p
-                                                                                        href={this.props.value.twitterLink}>{this.props.value.twitterLink}</p>
+                                                                                <i className="fab fa-linkedin"></i> <a
+                                                                                href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a><br/>
+                                                                                <i className="fab fa-facebook-f"></i> <a
+                                                                                href={this.props.value.facebookLink}>{this.props.value.facebookLink}</a><br/>
+                                                                                <i className="fab fa-twitter"></i> <a
+                                                                                href={this.props.value.twitterLink}>{this.props.value.twitterLink}</a>
                                                                                     <br/>
-                                                                                    <i className="fas fa-graduation-cap"></i>
-                                                                                    <a
-                                                                                        href={this.props.value.schoolHomepage}>{this.props.value.schoolHomepage}</a><br/>
-                                                                                    <i className="fas fa-briefcase"></i>
-                                                                                    <a
-                                                                                        href={this.props.value.workHomepage}>{this.props.value.workHomepage}</a><br/>
-                                                                                    <i className="fas fa-map-marker-alt"></i>
-                                                                                    <p>{this.props.value.basedNear}</p>
+                                                                                <i className="fas fa-graduation-cap"></i>
+                                                                                <a href={this.props.value.schoolHomepage}>{this.props.value.schoolHomepage}</a><br/>
+                                                                                <i className="fas fa-briefcase"></i> <a
+                                                                                href={this.props.value.workHomepage}>{this.props.value.workHomepage}</a><br/>
+                                                                                <i className="fas fa-map-marker-alt"></i>
+                                                                                <a>{this.props.value.basedNear}</a>
                                                                             </div>
                                                                     </div>
 

@@ -45,7 +45,7 @@ const SocialNetwork = (props) => {
                 <div className="form-group row">
                     <label htmlFor="skypeID" className="col-sm-1 col-form-label">Skype</label>
                     <div className="col-sm-4">
-                        <input type="password" className="form-control" name="skypeID" id="skypeID"
+                        <input type="text" className="form-control" name="skypeID" id="skypeID"
                                onChange={onSocNetChange}/>
                     </div>
                 </div>

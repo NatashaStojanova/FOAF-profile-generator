@@ -11,53 +11,80 @@ const Person = (props) => {
 
     return (
 
-        <Form inline>
+        <div className="container">
+            <form>
+                <div className="form-row" align="left">
+                    <div className="form-group row col-sm-4">
+                        <label htmlFor="baseURI" className="col-sm-4 col-form-label">Base URI</label>
+                        <div className="col-md-8">
+                            <input type="url" className="form-control" name="baseURI" id="baseURI"
+                                   placeholder="https://" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="baseURI" className="mr-sm-2">Base URI*</Label>
-                <Input type="url" name="baseURI" id="baseURI" onChange={onPersonChange} placeholder="http://"/>
-            </FormGroup>
+                    <div className="form-group row col-sm-4" align="right">
+                        <label htmlFor="email" className="col-sm-4 col-form-label">E-mail</label>
+                        <div className="col-md-8">
+                            <input type="email" className="form-control" name="email" id="email"
+                                   placeholder="example@mail" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-2 mr-sm-4 mb-sm-1">
-                <Label for="title" className="mr-sm-2">Title</Label>
-                <Input type="text" name="title" id="title" onChange={onPersonChange}
-                       placeholder="Mr, Ms, Mrs, Dr, etc"/>
-            </FormGroup>
+                    <div className="form-group row col-sm-4" align="right">
+                        <label htmlFor="title" className="col-sm-3 col-form-label">Title</label>
+                        <div className="col-md-8">
+                            <input type="text" className="form-control" name="title" id="title"
+                                   placeholder="Mr, Mrs, Dr, etc.." onChange={onPersonChange}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-row" align="left">
+                    <div className="form-group row col-sm-4">
+                        <label htmlFor="firstName" className="col-sm-4 col-form-label">First Name</label>
+                        <div className="col-md-8">
+                            <input type="text" className="form-control" name="firstName" id="firstName"
+                                   placeholder="Given Name" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-auto mr-sm-2 mb-sm-2">
-                <Label for="firstName" className="mr-sm-2">First Name (Given)</Label>
-                <Input type="text" name="firstName" id="firstName" onChange={onPersonChange} placeholder="First Name"/>
-            </FormGroup>
+                    <div className="form-group row col-sm-4" align="right">
+                        <label htmlFor="lastName" className="col-sm-4 col-form-label">Last Name</label>
+                        <div className="col-md-8">
+                            <input type="text" className="form-control" name="lastName" id="lastName"
+                                   placeholder="Family Name" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="nickname" className="mr-sm-2">Nickname</Label>
-                <Input type="text" name="nickname" id="nickname" onChange={onPersonChange} placeholder="Nickname"/>
-            </FormGroup>
+                    <div className="form-group row col-sm-4">
+                        <label htmlFor="nickname" className="col-sm-3 col-form-label">Nickname</label>
+                        <div className="col-md-8">
+                            <input type="text" className="form-control" name="nickname" id="nickname"
+                                   placeholder="Nickname" onChange={onPersonChange}/>
+                        </div>
+                    </div>
+                </div>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="email" className="mr-sm-2">Email*</Label>
-                <Input type="email" name="email" id="email" onChange={onPersonChange}
-                       placeholder="example@address.com"/>
-            </FormGroup>
+                <div className="form-row" align="left">
+                    <div className="form-group row col-sm-4">
+                        <label htmlFor="homepage" className="col-sm-4 col-form-label">Homepage</label>
+                        <div className="col-md-8">
+                            <input type="url" className="form-control" name="homepage" id="homepage"
+                                   placeholder="https://" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-2">
-                <Label for="lastName" className="mr-sm-2">Last Name (Family)</Label>
-                <Input type="text" name="lastName" id="lastName" onChange={onPersonChange} placeholder="Last Name"/>
-            </FormGroup>
+                    <div className="form-group row col-sm-4" align="right">
+                        <label htmlFor="image" className="col-sm-4 col-form-label">Image URL</label>
+                        <div className="col-md-8">
+                            <input type="url" className="form-control" name="image" id="image"
+                                   placeholder="https://" onChange={onPersonChange}/>
+                        </div>
+                    </div>
 
-            <FormGroup className="mb-auto mr-sm-2 mb-sm-2">
-                <Label for="homepage" className="mr-sm-2">Homepage</Label>
-                <Input type="url" name="homepage" id="homepage" onChange={onPersonChange}
-                       placeholder="http://"/>
-            </FormGroup>
+                </div>
 
-            <FormGroup className="mb-2 mr-lg-4 mb-sm-2">
-                <Label for="image" className="mr-sm-2">Image</Label>
-                <Input type="url" name="image" id="image" onChange={onPersonChange}
-                       placeholder="http://"/>
-            </FormGroup>
-
-        </Form>
+            </form>
+        </div>
 
     );
 }

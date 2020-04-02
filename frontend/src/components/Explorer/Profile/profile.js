@@ -32,6 +32,7 @@ const Profile = (props) => {
                         <option value=".rdf">RDF/XML</option>
                         <option value=".ttl">TURTLE</option>
                         <option value=".n3">N3</option>
+                        <option value=".nt">N-TRIPLES</option>
                     </AvInput>
                     <AvFeedback>This field is required!</AvFeedback>
                 </AvForm>

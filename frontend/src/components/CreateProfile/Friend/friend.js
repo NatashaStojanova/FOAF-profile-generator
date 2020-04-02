@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Form, FormGroup, Label, Input} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 
 class Friend extends Component {

@@ -87,37 +87,30 @@ class CreateProfile extends Component {
                 PersonService.addWorkProf(this.state.workProf).then(workProfResp => {
 
                     PersonService.addFriends(this.state.friends).then(resp => {
-                        //alert("Successfully added person");
                         PersonService.generateProfile(newPerson).then(personResp => {
                             document.getElementById("foafProfile").style.border = "thin solid #d3d3d3";
                             document.getElementById("foafProfile").innerHTML = personResp.data;
-                            //alert("Successfully created Profile")
                         }).catch(error => {
-                            alert("GENERATE")
                             this.setState({
                                 "errorMessage": error.data
                             });
                         })
                     }).catch(error => {
-                        alert("F")
                         this.setState({
                             "errorMessage": error.data
                         });
                     })
                 }).catch(error => {
-                    alert("WP")
                     this.setState({
                         "errorMessage": error.data
                     });
                 })
             }).catch(error => {
-                alert("S")
                 this.setState({
                     "errorMessage": error.data
                 });
             })
         }).catch(error => {
-            alert("P")
             this.setState({
                 "errorMessage": error.data
             });
@@ -126,34 +119,23 @@ class CreateProfile extends Component {
     }
     validate = (id) => {
         if (!this.state.person.baseURI || !this.state.person.email) {
-            console.log("person inputs BLANK")
-            console.log(this.state)
             return false;
         } else {
-            console.log("person inputs not blank")
-            console.log(this.state)
             if (this.state.friends.length === 0) {
-                console.log("No friends")
                 return true;
             } else {
-                console.log("Check friends inputs")
                 if (id === undefined) {
                     return true;
                 } else {
                     if (this.state.friends[id].firstName && this.state.friends[id].email && this.state.friends[id].baseURI) {
-                        console.log("friend inputs not blank")
                         return true;
                     } else if (!this.state.friends[id].firstName && !this.state.friends[id].email && !this.state.friends[id].baseURI) {
-                        console.log("friend inputs ALL blank")
-                        console.log(this.state)
                         this.state.friends.splice(id, 1);
-                        console.log("freiend deleted")
                         return true;
                     }
                     return false;
                 }
             }
-
             return true;
         }
     };
@@ -170,10 +152,8 @@ class CreateProfile extends Component {
             const isValid = this.validate();
 
             if (isValid) {
-                console.log("valid inputs");
                 this.setState({disable: false});
             } else {
-                console.log("invalid inputs");
                 this.setState({disable: true});
             }
         });
@@ -216,10 +196,8 @@ class CreateProfile extends Component {
                 const isValid = this.validate(id);
 
                 if (isValid) {
-                    console.log("valid inputs");
                     this.setState({disable: false});
                 } else {
-                    console.log("invalid inputs");
                     this.setState({disable: true});
                 }
             });
@@ -266,12 +244,9 @@ class CreateProfile extends Component {
                                 rows="20"
                             />
                         </div>
-
                     </div>)}
-
                 </div>
             </div>
-
 
         )
     }

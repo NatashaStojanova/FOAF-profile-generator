@@ -136,7 +136,7 @@ class CreateProfile extends Component {
                     return false;
                 }
             }
-            return true;
+            //return true;
         }
     };
 
@@ -218,7 +218,8 @@ class CreateProfile extends Component {
                             <h3 className="text-danger">
                                 An error occured
                             </h3>
-                            <p>Only well-formed absolute URI refs can be included in RDF/XML. Try again!</p>
+                            <p>You probably haven't entered all the required data or your URIs are in the wrong format.
+                                Only well-formed absolute URI refs can be included in RDF/XML. Try again!</p>
                             <br/>
                             <a href="/create"
                                className="btn btn-primary text-upper">

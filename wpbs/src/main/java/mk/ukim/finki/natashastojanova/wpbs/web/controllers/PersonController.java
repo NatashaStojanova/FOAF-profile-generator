@@ -17,7 +17,6 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 import org.apache.jena.sparql.vocabulary.FOAF;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -82,7 +81,6 @@ public class PersonController<RESTResource> {
                 if (friend1.isPresent()) {
                     //ako postoi vo baza toj covek, togash ne treba da pravam nov tuku treba da go povrzam so Pwrson-ot
                     personFriends.add(friend1.get());
-                    System.out.println(personFriends);
                     person.get().setFriends(personFriends);
                     personService.save(personFriends);
 
@@ -95,6 +93,7 @@ public class PersonController<RESTResource> {
                 }
             });
         }
+
         return friends;
     }
 
@@ -150,7 +149,7 @@ public class PersonController<RESTResource> {
                 .addProperty(FOAF.account,person.getBaseURI())
                 .addProperty(FOAF.firstName, person.getFirstName())
                 .addProperty(FOAF.lastName, person.getLastName())
-                .addProperty(FOAF.mbox_sha1sum, person.getEmail())
+                .addProperty(FOAF.mbox, person.getEmail())
                 .addProperty(FOAF.img , person.getImage())
                 .addProperty(FOAF.nick, person.getNickname())
                 .addProperty(FOAF.title, person.getTitle())
@@ -171,7 +170,7 @@ public class PersonController<RESTResource> {
             person.getFriends().forEach(friend -> {
                 personTurtle.addProperty(FOAF.knows, model.createResource(friend.getBaseURI(), FOAF.Person)
                         .addProperty(FOAF.firstName, friend.getFirstName())
-                        .addProperty(FOAF.mbox_sha1sum, friend.getEmail()));
+                        .addProperty(FOAF.mbox, friend.getEmail()));
 
             });
         }
@@ -226,7 +225,7 @@ public class PersonController<RESTResource> {
         p.setNick(nick);
         String image = r.getProperty(FOAF.img).getString();
         p.setImage(image);
-        String email = r.getProperty(FOAF.mbox_sha1sum).getString();
+        String email = r.getProperty(FOAF.mbox).getString();
         p.setEmail(email);
         /*String baseURI = r.getProperty(FOAF.account).getString();
         p.setBaseURI(baseURI);*/
@@ -278,7 +277,6 @@ public class PersonController<RESTResource> {
                 continue;
             }
 
-
         }
 
 
@@ -292,7 +290,7 @@ public class PersonController<RESTResource> {
             Resource resourceFriend = (Resource) iterFriends.nextNode();
             String name = resourceFriend.getProperty(FOAF.firstName).getString();
             f.setName(name);
-            String emailFriend = resourceFriend.getProperty(FOAF.mbox_sha1sum).getString();
+            String emailFriend = resourceFriend.getProperty(FOAF.mbox).getString();
             f.setEmail(emailFriend);
             friends.add(f);
         }

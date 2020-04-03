@@ -7,7 +7,6 @@ import Home from "../Home/home.js"
 import Explorer from "../Explorer/explorer";
 import Parser from "../Parser/parser";
 import FooterPage from "../FooterPage/footerPage";
-import Exe from "../Exe/exe"
 
 class App extends Component {
 
@@ -35,10 +34,6 @@ class App extends Component {
                     <Route path="/FOAF-translator" exact
                            render={() => <Parser/>}>
                     </Route>
-                    <Route path="/exe" exact
-                           render={() => <Exe/>}>
-                    </Route>
-
                     <FooterPage/>
                 </Router>
             </div>

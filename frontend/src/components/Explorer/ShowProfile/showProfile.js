@@ -50,9 +50,9 @@ class ShowProfile extends Component {
                                                                             <br/><br/>
                                                                             <div align="left">
                                                                                 <i className="fas fa-envelope"></i>
-                                                                                <a>{this.props.value.email}</a><br/>
+                                                                                <p>{this.props.value.email}</p><br/>
                                                                                 <i className="fab fa-skype"></i>
-                                                                                <a>{this.props.value.skypeID}</a>
+                                                                                <p>{this.props.value.skypeID}</p>
                                                                                     <br/>
                                                                                 <i className="fab fa-linkedin"></i> <a
                                                                                 href={this.props.value.linkedInLink}>{this.props.value.linkedInLink}</a><br/>
@@ -66,7 +66,7 @@ class ShowProfile extends Component {
                                                                                 <i className="fas fa-briefcase"></i> <a
                                                                                 href={this.props.value.workHomepage}>{this.props.value.workHomepage}</a><br/>
                                                                                 <i className="fas fa-map-marker-alt"></i>
-                                                                                <a>{this.props.value.basedNear}</a>
+                                                                                <p href="">{this.props.value.basedNear}</p>
                                                                             </div>
                                                                     </div>
 

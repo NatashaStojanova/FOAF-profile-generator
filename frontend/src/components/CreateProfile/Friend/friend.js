@@ -25,7 +25,7 @@ class Friend extends Component {
                 <form>
                     <div className="form-row">
                         <div className="form-group row col-sm-4">
-                            <label htmlFor="firstName" className="col-sm-4 col-form-label">First Name:</label>
+                            <label htmlFor="firstName" className="col-sm-4 col-form-label">First Name*</label>
                             <div className="col-md-8">
                                 <input type="text" className="form-control" name="firstName" id="firstName"
                                        placeholder="Given Name" onChange={this.onFriendChange}/>
@@ -33,7 +33,7 @@ class Friend extends Component {
                         </div>
 
                         <div className="form-group row col-sm-4" align="right">
-                            <label htmlFor="email" className="col-sm-4 col-form-label">E-mail:</label>
+                            <label htmlFor="email" className="col-sm-4 col-form-label">E-mail*</label>
                             <div className="col-md-8">
                                 <input type="email" className="form-control" name="email" id="email"
                                        placeholder="example@mail" onChange={this.onFriendChange}/>
@@ -41,7 +41,7 @@ class Friend extends Component {
                         </div>
 
                         <div className="form-group row col-sm-4">
-                            <label htmlFor="baseURI" className="col-sm-3 col-form-label">URI:</label>
+                            <label htmlFor="baseURI" className="col-sm-3 col-form-label">URI*</label>
                             <div className="col-md-8">
                                 <input type="url" className="form-control" name="baseURI" id="baseURI"
                                        placeholder="https://" onChange={this.onFriendChange}/>

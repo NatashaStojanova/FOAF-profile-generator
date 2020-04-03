@@ -1,5 +1,4 @@
 import React from 'react';
-import {Form, FormGroup, Label, Input} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 
 const Person = (props) => {
@@ -15,7 +14,7 @@ const Person = (props) => {
             <form>
                 <div className="form-row" align="left">
                     <div className="form-group row col-sm-4">
-                        <label htmlFor="baseURI" className="col-sm-4 col-form-label">Base URI</label>
+                        <label htmlFor="baseURI" className="col-sm-4 col-form-label">Base URI*</label>
                         <div className="col-md-8">
                             <input type="url" className="form-control" name="baseURI" id="baseURI"
                                    placeholder="https://" onChange={onPersonChange}/>
@@ -23,7 +22,7 @@ const Person = (props) => {
                     </div>
 
                     <div className="form-group row col-sm-4" align="right">
-                        <label htmlFor="email" className="col-sm-4 col-form-label">E-mail</label>
+                        <label htmlFor="email" className="col-sm-4 col-form-label">E-mail*</label>
                         <div className="col-md-8">
                             <input type="email" className="form-control" name="email" id="email"
                                    placeholder="example@mail" onChange={onPersonChange}/>

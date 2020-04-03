@@ -216,7 +216,7 @@ class CreateProfile extends Component {
                         <div className="container border-error" style={{border: "1px solid red", padding: "1em"}}>
 
                             <h3 className="text-danger">
-                                An error occured
+                                An error occured!
                             </h3>
                             <p>You probably haven't entered all the required data or your URIs are in the wrong format.
                                 Only well-formed absolute URI refs can be included in RDF/XML. Try again!</p>

@@ -11,12 +11,15 @@ After clicking the **FOAF ME** button, a profile written in RDF syntax will be g
 
 -The third part of the project is FOAF translator. With this, the user can parse his profile by selecting the correct input and output format.
 
-### How to start the project?
-1. Clone this repository
-2. Enter the *frontend* folder - open a terminal - type: *npm install* - and then type: *npm start*
-3. Open IntelliJ (or other IDE) - File - Open - open folder *wpbs*.
-4. Connect to the database. *(for this project I used MySQL)*
-5. Run
+## How to start the project?
+### 1. Clone this repository
+### 2. Enter the *frontend* folder - open a terminal - type: `npm install`  and then type: `npm start`
+### 3. Open IntelliJ (or other IDE) - File - Open - open folder *wpbs*.
+### 4. Connect to the database. *(for this project I used MySQL)*
+### 5. Run
+
+
+
 
 
 

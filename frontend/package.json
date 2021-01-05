@@ -9,7 +9,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "availity-reactstrap-validation": "^2.6.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "material-table": "^1.57.2",
     "material-ui": "^0.20.2",
